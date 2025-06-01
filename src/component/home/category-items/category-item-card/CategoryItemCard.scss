@@ -1,0 +1,32 @@
+.category-item-card{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'poppins', sans-serif;
+    font-size: 1rem ;
+    overflow: hidden;
+    font-weight: 600;   
+    
+    .img-container{
+        overflow: hidden ;
+        border-radius: 0.6rem;
+      
+        img{
+            border-radius: 0.6rem;
+        }
+        
+        img:hover{
+            transform: scale(1.5);
+            transition: transform 1s;
+        }
+    }
+    
+    span{
+        margin: 1.2rem 0rem 0rem 0rem;
+    }
+}
+
+
+
+
+

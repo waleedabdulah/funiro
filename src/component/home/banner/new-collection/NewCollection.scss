@@ -1,0 +1,28 @@
+.new-collection-container{
+    padding:3rem 2rem 2rem 2rem;
+    width: 35rem;
+    // height: 23rem;
+    background-color: #FFF3E3;  
+    display: flex;
+    flex-direction: column;
+    gap:0.8rem;
+    font-family: 'poppins', sans-serif;
+}
+
+.text1{
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.text2{
+   color: #B88E2F;
+   font-size: 2.5rem;
+   
+   font-weight: 700; 
+}
+
+.text3{
+    font-size: 14px;
+    padding-right: 1rem;
+}

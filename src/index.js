@@ -1,17 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Route, Routes , BrowserRouter } from 'react-router-dom'
+import Home from './component/home/Home';
+import Blog from './component/blog/Blog';
+import Contact from './component/contact/Contact';
+import SingleProduct from './component/single-product/SingleProduct';
+import ProductComparison from './component/product-comparison/ProductComparison';
+import Checkout from './component/checkout/Checkout';
+import Cart from './component/cart/Cart';
+import Shop from './component/shop/Shop';
+import './styles.scss'
+import Header from './component/header/Header';
+import Footer from './component/footer/Footer';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  <BrowserRouter>
+    <React.StrictMode>
+    {/* <Header />  */}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      {/* <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/single-product' element={<SingleProduct />} />
+        <Route path='/product-comparison' element={<ProductComparison />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/shop' element={<Shop />} />
+      </Routes> */}
+      {/* <NAvbar */}
+      <App />
+
+      <Footer />
+    </React.StrictMode>
+  </BrowserRouter>
+);

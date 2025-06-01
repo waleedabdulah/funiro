@@ -1,0 +1,142 @@
+.card-container {
+    overflow: hidden;
+    font-family: 'poppins', sans-serif;
+    position: relative;
+    background-color: #F4F5F7;
+    // border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-container:hover
+.overlay::before{
+    background-color: rgba(0, 0, 0, 0.4); /* Adjust the color and opacity as needed */
+}
+
+.img-container {
+    position: relative;
+    width: 16rem;
+    height: 18.5rem;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1;   
+}
+
+.overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* Position the background layer behind the content */
+}
+
+.overlay-content{
+    position: absolute;
+    z-index: 2;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .add-to-cart-btn {
+        background-color: #fff;
+        color: #B88E2F;
+        width : 75%;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 0px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    
+    .actions{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: #fff;
+        font-size: small;
+        margin: 10px 0px;
+        cursor: pointer;
+
+        .css-1umw9bq-MuiSvgIcon-root{
+            font-size: 0.9rem !important;
+        }
+
+        span{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+    
+}
+
+.tag-container{
+    display: flex;
+    gap:0.5rem;
+    position: absolute;
+    top:20px;
+    right:10px;
+
+    .discount-tag{
+        background-color: #E97171;
+        color: white;
+        padding:0.6rem 0rem 0.6rem 0.2rem ;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .new-product-tag{
+        text-align: center;
+        background-color: #2EC1AC;
+        color: white;
+        padding:0.65rem 0.3rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+    }
+}
+
+.card-info-container{
+    display: flex;
+    flex-direction: column;
+    font-family: 'poppins', sans-serif;
+    background-color: #F4F5F7;
+    padding: 1.1rem 1rem 1.7rem 1rem ;
+    gap: 0.6rem;
+
+    .product-name{
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+
+    .product-type{
+        font-size: 0.95rem;
+        color: #898989;
+    }
+    
+    .price-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .discount-percentage{
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        
+        .product-price{
+            color: #B0B0B0;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+    }
+    
+}
