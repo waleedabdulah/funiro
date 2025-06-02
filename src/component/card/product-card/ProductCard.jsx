@@ -1,8 +1,8 @@
 import './ProductCard.scss';
 import { useState, useEffect , useRef } from 'react';
-// import ShareIcon from '@mui/icons-material/Share';
-// import MultipleStopSharpIcon from '@mui/icons-material/MultipleStopSharp';
-// import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
+import { CgShare } from "react-icons/cg";
+import { TbArrowsLeftRight } from "react-icons/tb";
+import { CiHeart } from "react-icons/ci";
 
 export default function ProductCard({imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false }){
     let discountPrice = productPrice - (productPrice * discountPercentage / 100);
@@ -41,15 +41,15 @@ export default function ProductCard({imgSrc , productName, productType , product
                             <button className="add-to-cart-btn">Add to Cart</button>
                             <div className="actions">
                                 <span>
-                                    {/* <ShareIcon />  */}
+                                    <CgShare />
                                     <p>Share</p>
                                 </span>
                                 <span>
-                                    {/* <MultipleStopSharpIcon /> */}
+                                    <TbArrowsLeftRight />
                                     <p>Compare</p>
                                 </span>
                                 <span>
-                                    {/* <FavoriteBorderSharpIcon /> */}
+                                    <CiHeart />
                                     <p>Like</p>
                                 </span>
                             </div> 
