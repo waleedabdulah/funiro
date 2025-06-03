@@ -11,7 +11,6 @@ export default function Header(){
     return (
         <div className="header-container">
            <div className="logo">
-                {/* <TollIcon style={{fontSize: '2rem'}}/> */}
                 <img src={Logo} alt='Logo' />
                 <h2>Funiro</h2>
            </div>
