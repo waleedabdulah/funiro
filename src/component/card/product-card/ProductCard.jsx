@@ -35,7 +35,6 @@ export default function ProductCard({item_info}){
         <div className="card-container">
             
             <div className='overlay' ref={overlayRef}>
-                
                 {isHovered &&
                     <div className='overlay-content' >
                         <button className="add-to-cart-btn">Add to Cart</button>

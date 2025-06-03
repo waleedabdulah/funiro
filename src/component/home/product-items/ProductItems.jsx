@@ -1,8 +1,14 @@
 import Heading from '../../heading/Heading';
 import './ProductItems.scss';
 import ProductCard from '../../card/product-card/ProductCard.jsx';
+import { useNavigate } from 'react-router-dom';
 
-export default function ProductItems({isShowMoreBtn = false , product_items}){
+export default function ProductItems({isShowMoreBtn = false , itemsShowing , onShowMore}){
+    const navigate = useNavigate();
+
+    function navigateToShopScreen(){
+        navigate('/shop')
+    } 
 
     return (
         <div className="product-items-container">
@@ -10,7 +16,7 @@ export default function ProductItems({isShowMoreBtn = false , product_items}){
 
             <div className='product-cards-container'>
                 {
-                    product_items.map((item) =>
+                    itemsShowing.map((item) =>
                         <ProductCard item_info={item} />        
                     )
                 }
@@ -18,9 +24,21 @@ export default function ProductItems({isShowMoreBtn = false , product_items}){
 
             {
                 isShowMoreBtn &&
-                <button className='show-more-btn'>
-                    Show More
-                </button>
+                ( 
+                    itemsShowing.length < 16 ?
+                    <button 
+                        onClick={onShowMore}
+                        className='show-more-btn'
+                    >
+                        Show More
+                    </button> :
+                    <button 
+                        onClick={navigateToShopScreen}
+                        className='show-more-btn'
+                    >
+                        We recommend you to visit our all product list
+                    </button>
+                )
             }
         </div>
     )
