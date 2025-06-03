@@ -4,7 +4,8 @@ import { CgShare } from "react-icons/cg";
 import { TbArrowsLeftRight } from "react-icons/tb";
 import { CiHeart } from "react-icons/ci";
 
-export default function ProductCard({imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false }){
+export default function ProductCard({item_info}){
+    const {imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = item_info ;
     let discountPrice = productPrice - (productPrice * discountPercentage / 100);
     
     const overlayRef = useRef(null);
@@ -34,26 +35,26 @@ export default function ProductCard({imgSrc , productName, productType , product
         <div className="card-container">
             
             <div className='overlay' ref={overlayRef}>
-                {console.log('isHovered : ' , isHovered)}
                 
-            {isHovered &&
-                        <div className='overlay-content' >
-                            <button className="add-to-cart-btn">Add to Cart</button>
-                            <div className="actions">
-                                <span>
-                                    <CgShare />
-                                    <p>Share</p>
-                                </span>
-                                <span>
-                                    <TbArrowsLeftRight />
-                                    <p>Compare</p>
-                                </span>
-                                <span>
-                                    <CiHeart />
-                                    <p>Like</p>
-                                </span>
-                            </div> 
-                        </div>}
+                {isHovered &&
+                    <div className='overlay-content' >
+                        <button className="add-to-cart-btn">Add to Cart</button>
+                        <div className="actions">
+                            <span>
+                                <CgShare />
+                                <p>Share</p>
+                            </span>
+                            <span>
+                                <TbArrowsLeftRight />
+                                <p>Compare</p>
+                            </span>
+                            <span>
+                                <CiHeart />
+                                <p>Like</p>
+                            </span>
+                        </div> 
+                    </div>
+                }
 
                 <div className="img-container">
                     <img src={imgSrc} alt={imgSrc} />
@@ -74,6 +75,5 @@ export default function ProductCard({imgSrc , productName, productType , product
             </div>
             
         </div>
-
     )
 }

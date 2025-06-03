@@ -9,12 +9,14 @@ import DiverseFurnitureOptions  from './diverse-furniture-options/DiverseFurnitu
 
 // import ArrowOnUser from '@/assets/landing-screen/Arrow_on_user.png';
 
+import { products_list } from '../../helpers/constants';
+
 export default function Home(){
     return (
         <div className='home-container'>
             <Banner />
             <CategoryItems />
-            <ProductItems isShowMoreBtn={true}/>
+            <ProductItems isShowMoreBtn={true} product_items={products_list}/>
             <RoomDecorationInspirations />
             <DiverseFurnitureOptions />
         </div> 
