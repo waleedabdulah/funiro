@@ -14,7 +14,7 @@ export default function Home(){
         <div className='home-container'>
             <Banner />
             <CategoryItems />
-            <ProductItems />
+            <ProductItems isShowMoreBtn={true}/>
             <RoomDecorationInspirations />
             <DiverseFurnitureOptions />
         </div> 

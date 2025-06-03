@@ -10,7 +10,7 @@ import ProductCard07 from '../../../assets/home/ProductCard07.png'
 import ProductCard08 from '../../../assets/home/ProductCard08.png' 
 import ProductCard from '../../card/product-card/ProductCard.jsx';
 
-export default function ProductItems(){
+export default function ProductItems({isShowMoreBtn = false}){
 
     return (
         <div className="product-items-container">
@@ -81,9 +81,12 @@ export default function ProductItems(){
 
             </div>
 
-            <button className='show-more-btn'>
-                Show More
-            </button>
+            {
+                isShowMoreBtn &&
+                <button className='show-more-btn'>
+                    Show More
+                </button>
+            }
         </div>
     )
 }
