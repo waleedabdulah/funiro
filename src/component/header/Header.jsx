@@ -1,10 +1,10 @@
-// import TollIcon from '@mui/icons-material/Toll';
 import './Header.scss'
 import { NavLink } from 'react-router-dom';
-// import SearchIcon from '@mui/icons-material/Search';
-// import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
-// import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-// import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Logo from '../../assets/header/Logo.svg'
+import { BsCart3 } from "react-icons/bs";
+import { CiHeart } from "react-icons/ci";
+import { CiSearch } from "react-icons/ci";
+import { BsPersonExclamation } from "react-icons/bs";
 
 export default function Header(){
 
@@ -12,6 +12,7 @@ export default function Header(){
         <div className="header-container">
            <div className="logo">
                 {/* <TollIcon style={{fontSize: '2rem'}}/> */}
+                <img src={Logo} alt='Logo' />
                 <h2>Funiro</h2>
            </div>
 
@@ -25,10 +26,10 @@ export default function Header(){
            </div>
 
            <div className="icons">
-            {/* <ReportGmailerrorredIcon />
-            <SearchIcon /> 
-            <FavoriteBorderOutlinedIcon />
-            <ShoppingCartOutlinedIcon /> */}
+                <BsPersonExclamation />
+                <CiSearch />
+                <CiHeart />
+                <BsCart3 />
            </div> 
         </div>
     )

@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-    {/* <Header />  */}
+    <Header /> 
 
       {/* <Routes>
         <Route path='/' element={<Home />} />
