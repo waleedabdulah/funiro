@@ -45,7 +45,6 @@ export const products_list =[
         productName: 'Syltherine',
         productType: 'Stylish cafe chair',
         productPrice: 3500,
-        discountPercentage : 30,
         isNewProduct: true
     },
     {
@@ -54,14 +53,13 @@ export const products_list =[
         productType: 'Luxury big sofa',
         productPrice: 2500,
         discountPercentage : 20,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product03 ,
         productName: 'Lolito',
         productType: 'Outdoor bar table and stool',
         productPrice: 5500,
-        discountPercentage : 50,
         isNewProduct: true
     },
     {
@@ -70,7 +68,7 @@ export const products_list =[
         productType: 'Outdoor bar table and stool, Luxury big sofa',
         productPrice: 500,
         discountPercentage : 0,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product05 ,
@@ -85,7 +83,6 @@ export const products_list =[
         productName: 'Leviosa',
         productType: 'Luxury big sofa',
         productPrice: 0,
-        discountPercentage : 20,
         isNewProduct: true
     },
     {
@@ -94,7 +91,7 @@ export const products_list =[
         productType: 'Outdoor bar table and stool',
         productPrice: 5500,
         discountPercentage : 50,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product08 ,
@@ -110,7 +107,7 @@ export const products_list =[
         productType: 'Stylish cafe chair',
         productPrice: 3500,
         discountPercentage : 30,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product10 ,
@@ -198,7 +195,7 @@ export const products_list =[
         productType: 'Outdoor bar table and stool, Luxury big sofa',
         productPrice: 500,
         discountPercentage : 0,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product09 ,
@@ -246,7 +243,7 @@ export const products_list =[
         productType: 'Luxury big sofa',
         productPrice: 2500,
         discountPercentage : 20,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product03 ,
@@ -294,7 +291,7 @@ export const products_list =[
         productType: 'Outdoor bar table and stool, Luxury big sofa',
         productPrice: 500,
         discountPercentage : 0,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product09 ,
@@ -310,7 +307,7 @@ export const products_list =[
         productType: 'Luxury big sofa',
         productPrice: 2500,
         discountPercentage : 20,
-        isNewProduct: true
+        isNewProduct: false
     },
     {
         imgSrc : Product11 ,
@@ -326,6 +323,6 @@ export const products_list =[
         productType: 'Outdoor bar table and stool, Luxury big sofa',
         productPrice: 500,
         discountPercentage : 0,
-        isNewProduct: true
+        isNewProduct: false
     }
 ] 

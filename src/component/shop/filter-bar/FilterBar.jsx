@@ -6,8 +6,6 @@ import { MdOutlineViewDay } from "react-icons/md";
 import ProductItems from "../../home/product-items/ProductItems";
 import { products_list , shopScreen_slider_content} from "../../../helpers/constants";
 
-
-
 export default function FilterBar(){
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
@@ -25,11 +23,13 @@ export default function FilterBar(){
         currentPage: 1 ,
         prev: false 
     })
-    
+    const [ filters , setFilters ] = useState({ isNewProduct : false , isDiscountedItems : false})
+    const [showFilterDropdown , setShowFilterDropdown ] = useState(false);
+
     useEffect(() =>{
         setItemsShowing([]);
         calculatingPages()
-    }, [itemsPerPage])
+    }, [itemsPerPage, filters ])
 
     useEffect(() => {
         function handleResize() {
@@ -44,23 +44,85 @@ export default function FilterBar(){
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    function calculatingPages(){
-        let  b = Math.floor(products_list.length / itemsPerPage) , nestedItems = []; 
+    function extractFilterOptions(){
 
-        for (let i = 1; i <= b; i++) {
+    }    
+
+    function calculatingPages(){
+        let nestedItems = []; 
+        let c = products_list.filter((item) => {
+            if(filters.isDiscountedItems && filters.isNewProduct && item.discountPercentage > 0 && item.isNewProduct){
+                return item
+            }else if(filters.isDiscountedItems && !filters.isNewProduct && item.discountPercentage > 0 ){
+                return item
+            }else if(!filters.isDiscountedItems && filters.isNewProduct && item.isNewProduct ){
+                return item
+            } 
+        })
+
+        if(c.length === 0 && (!filters.isDiscountedItems && !filters.isNewProduct))
+            c =  products_list
+        
+        let b = c ;
+        c = Math.floor(c.length /itemsPerPage)
+        for (let i = 1; i <= c; i++) {
             const start = (i - 1) * itemsPerPage;
             const end = i * itemsPerPage;
-            nestedItems.push(products_list.slice(start, end));
+            nestedItems.push(b.slice(start, end));
         }
-        nestedItems.push(products_list.slice(b*itemsPerPage , products_list.length ))
+        nestedItems.push(b.slice(c*itemsPerPage))
     
         setItemsShowing(nestedItems); 
     }
+
     return (
         <div className='container'>
             <div className="filterBar-container">
                 <div className="filter-view">
-                    <LuFilter className="grid01" />
+                    <>
+                        <LuFilter 
+                            onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                            className="grid01"
+                        />
+                        {
+                            showFilterDropdown &&
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    left: windowSize.width > 500 ? "100px" : '20px',
+                                    backgroundColor: "#fff",
+                                    border: "1px solid #ccc",
+                                    borderRadius: "6px",
+                                    width: '150px',
+                                    marginTop: '20px',
+                                    padding: '10px' ,
+                                    boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+                                    zIndex: 100,
+                                }}
+                            >
+                                <div
+                                    onClick={() => setFilters({ ...filters , isDiscountedItems : !filters.isDiscountedItems})}
+                                    style={{
+                                    cursor: "pointer",
+                                    backgroundColor: filters.isDiscountedItems ? "black" : "white",
+                                    color: filters.isDiscountedItems ? "white" : "black",
+                                    }}
+                                >
+                                    Discounted Items
+                                </div>
+                                <div
+                                    onClick={() => setFilters({ ...filters , isNewProduct : !filters.isNewProduct})}
+                                    style={{
+                                    cursor: "pointer",
+                                    backgroundColor: filters.isNewProduct ? "black" : "white",
+                                    color: filters.isNewProduct ? "white" : "black",
+                                    }}
+                                >
+                                    New Items
+                                </div>
+                            </div>
+                        }
+                    </>
                     <span className="grid02">Filter</span>
                     <CgMenuGridO className="grid03"/>
                     <MdOutlineViewDay className="grid04"/>
@@ -69,27 +131,23 @@ export default function FilterBar(){
                         <>
                             <span className="grid05">|</span> 
                             <span className="grid06">Showing {' '}
-                                {
-                                    (isActive.currentPage === 1 && pageNumber.page01 === 1) ?
-                                        1 :
-                                            (isActive.currentPage === 1) ?
-                                                (pageNumber.page01-1)*itemsPerPage :
-                                                (isActive.currentPage === 2) ?
-                                                    (pageNumber.page02-1)*itemsPerPage :
-                                                    (pageNumber.page03-1)*itemsPerPage
+                                {   
+                                    isActive.currentPage === 1 ? 
+                                    ((pageNumber.page01-1)*itemsPerPage)+1:
+                                        isActive.currentPage === 2 ?
+                                            ((pageNumber.page02-1)*itemsPerPage)+1 :
+                                            ((pageNumber.page03-1)*itemsPerPage)+1
                                 }
                                 {' – '}
                                 { 
-                                    (isActive.currentPage === 1 && pageNumber.page01 === 1) ?
-                                        itemsPerPage :
-                                            (isActive.currentPage === 1) ?
-                                                (pageNumber.page01)*itemsPerPage :
-                                                (isActive.currentPage === 2) ?
-                                                    (pageNumber.page02)*itemsPerPage :
-                                                    (isActive.currentPage === 3 ) && (pageNumber.page03 === itemsShowing.length) ?
-                                                        products_list.length :    
-                                                        pageNumber.page03*itemsPerPage   
-                                } of {products_list.length} results</span>
+                                    isActive.currentPage === 1 ? 
+                                    ((pageNumber.page01)*itemsPerPage):
+                                        isActive.currentPage === 2 ?
+                                            ((pageNumber.page02)*itemsPerPage) :
+                                            ((pageNumber.page02)*itemsPerPage)+itemsShowing[pageNumber.page03-1]?.length 
+                                    
+                                } of {products_list.length} results
+                            </span>
                         </>
                     }
                 </div>
@@ -132,30 +190,39 @@ export default function FilterBar(){
                     Prev
                 </span>
                 <span 
-                    className={`page01 ${isActive.currentPage === 1 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , currentPage: 1 , prev: false })}
+                    className={`page01 ${isActive.currentPage === 1 && 'active'} ${itemsShowing.length < 1 && "inactive" }`}
+                    onClick={() =>  {
+                        if(itemsShowing.length >= 1)
+                            setIsActive({  next: false , currentPage: 1 , prev: false })
+                    }}
                 >
                     {pageNumber.page01}
                 </span>
                 <span 
-                    className={`page02 ${isActive.currentPage === 2 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , currentPage: 2 , prev: false })}
+                    className={`page02 ${isActive.currentPage === 2 && 'active'} ${itemsShowing.length < 2 && "inactive" }`}
+                    onClick={() => {
+                        if(itemsShowing.length >= 2)
+                            setIsActive({  next: false , currentPage: 2 , prev: false })
+                    }}
                 >
                     {pageNumber.page02}
                 </span>
                 <span
-                    className={`page03 ${isActive.currentPage === 3 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , currentPage: 3 , prev: false })}
+                    className={`page03 ${isActive.currentPage === 3 && 'active'} ${itemsShowing.length < 3 && "inactive" }`}
+                    onClick={() => {
+                        if(itemsShowing.length >= 3)  
+                            setIsActive({  next: false , currentPage: 3 , prev: false })
+                    }}
                 >
                     {pageNumber.page03}
                 </span>
                 <span 
                     className={`next ${isActive.next && 'active'} ${itemsShowing.length === pageNumber.page03 && isActive.currentPage === 3 && 'inactive'}`}
                     onClick={() => {
-
-                        if(isActive.currentPage === 1)
+                         
+                        if(isActive.currentPage === 1 && itemsShowing.length > 1)
                             setIsActive({  next: true , currentPage: 2 , prev: false })
-                        else if(isActive.currentPage === 2)
+                        else if(isActive.currentPage === 2 && itemsShowing.length > 2)
                             setIsActive({  next: true , currentPage: 3 , prev: false })
                         else if(isActive.currentPage === 3){
                             if( itemsShowing.length > 3 && itemsShowing.length !== pageNumber.page03 ){
