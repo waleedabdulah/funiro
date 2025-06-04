@@ -11,7 +11,33 @@ import Product10 from '../assets/home/background01.png';
 import Product11 from '../assets/home/categoryItem01.png'
 import Product12 from '../assets/home/categoryItem02.png'
 import Product13 from '../assets/home/categoryItem03.png';
+import Logo04_customer_support from '../assets/Shop/customer_support.png';
+import Logo02_guarantee from '../assets/Shop/guarantee.png'
+import Logo01_quality from '../assets/Shop/quality.png'
+import Logo03_shipping from '../assets/Shop/shipping.png'
 
+export const shopScreen_slider_content = [
+    {
+        logo: Logo01_quality,
+        title: 'High Quality',
+        description: 'crafted from top materials'
+    },
+    {
+        logo: Logo02_guarantee,
+        title: 'Warranty Protection',
+        description: 'Over 2 years'
+    },
+    {
+        logo: Logo03_shipping,
+        title: 'Free Shipping',
+        description: 'Order over 150 $'
+    },
+    {
+        logo: Logo04_customer_support,
+        title: '24 / 7 Support',
+        description: 'Dedicated support'
+    },
+]
 
 export const products_list =[
     {
@@ -111,7 +137,7 @@ export const products_list =[
         isNewProduct: true
     },
     {
-        imgSrc : Product01 ,
+        imgSrc : Product13 ,
         productName: 'Syltherine',
         productType: 'Stylish cafe chair',
         productPrice: 3500,

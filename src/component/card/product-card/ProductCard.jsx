@@ -5,7 +5,6 @@ import { TbArrowsLeftRight } from "react-icons/tb";
 import { CiHeart } from "react-icons/ci";
 
 export default function ProductCard({item_info}){
-    console.log('0o0o0o0o0o : ' , item_info)
     const {imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = item_info ;
     let discountPrice = productPrice - (productPrice * discountPercentage / 100);
     

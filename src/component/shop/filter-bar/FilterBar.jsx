@@ -1,10 +1,11 @@
-import React , {useState , useEffect }from "react";
+import React , {useState , useEffect , useRef }from "react";
 import './FilterBar.scss';
 import { LuFilter } from "react-icons/lu";
 import { CgMenuGridO } from "react-icons/cg";
 import { MdOutlineViewDay } from "react-icons/md";
 import ProductItems from "../../home/product-items/ProductItems";
-import { products_list } from "../../../helpers/constants";
+import { products_list , shopScreen_slider_content} from "../../../helpers/constants";
+
 
 
 export default function FilterBar(){
@@ -55,7 +56,6 @@ export default function FilterBar(){
     
         setItemsShowing(nestedItems); 
     }
-   
     return (
         <div className='container'>
             <div className="filterBar-container">
@@ -164,7 +164,6 @@ export default function FilterBar(){
                             }else if( itemsShowing.length === pageNumber.page03 ){
 
                             }
-
                         }
                     }}
                 >
@@ -173,8 +172,21 @@ export default function FilterBar(){
             </div>
 
             <div className="slider-container">
-                
-            </div>
+                <div 
+                    className="slider-track"
+                >
+                    {[...shopScreen_slider_content].map((slider_item, index) => (
+                        <div className="content" key={index}>
+                            <img src={slider_item.logo} alt="" />
+                            <div className="text">
+                                <span>{slider_item.title}</span>
+                                <span>{slider_item.description}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>    
+
         </div>
         
     )
