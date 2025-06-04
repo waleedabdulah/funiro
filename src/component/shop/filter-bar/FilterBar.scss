@@ -103,10 +103,13 @@
         }
 
         .hide{
-            display: none;
+            background-color: transparent;
+            color: transparent;
         }
 
-        
+        .inactive{
+            opacity: 0.5 ;
+        }
     }
 
 }

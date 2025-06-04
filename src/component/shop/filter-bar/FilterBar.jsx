@@ -12,16 +12,22 @@ export default function FilterBar(){
         width: window.innerWidth,
         height: window.innerHeight,
     });
-
-
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
-    const [ itemsShowing , setItemsShowing ] = useState(products_list.slice(0 , itemsPerPage))
-    const [ isActive , setIsActive ] = useState({
-        next:  false , page01 : true , page02 : false , page03 : false , prev: false 
+    const [ itemsShowing , setItemsShowing ] = useState([])
+    const [ pageNumber , setPageNumber ] = useState({
+        page01 : 1 ,
+        page02 : 2 ,
+        page03 : 3
     })
-
+    const [ isActive , setIsActive ] = useState({
+        next:  false ,
+        currentPage: 1 ,
+        prev: false 
+    })
+    
     useEffect(() =>{
-        setItemsShowing(products_list.slice(0, itemsPerPage))
+        setItemsShowing([]);
+        calculatingPages()
     }, [itemsPerPage])
 
     useEffect(() => {
@@ -34,10 +40,22 @@ export default function FilterBar(){
 
         window.addEventListener('resize', handleResize);
         
-        // Cleanup on unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    function calculatingPages(){
+        let  b = Math.floor(products_list.length / itemsPerPage) , nestedItems = []; 
+
+        for (let i = 1; i <= b; i++) {
+            const start = (i - 1) * itemsPerPage;
+            const end = i * itemsPerPage;
+            nestedItems.push(products_list.slice(start, end));
+        }
+        nestedItems.push(products_list.slice(b*itemsPerPage , products_list.length ))
     
+        setItemsShowing(nestedItems); 
+    }
+   
     return (
         <div className='container'>
             <div className="filterBar-container">
@@ -50,7 +68,28 @@ export default function FilterBar(){
                         windowSize.width > 425 &&
                         <>
                             <span className="grid05">|</span> 
-                            <span className="grid06">Showing 1–{itemsPerPage} of {products_list.length} results</span>
+                            <span className="grid06">Showing {' '}
+                                {
+                                    (isActive.currentPage === 1 && pageNumber.page01 === 1) ?
+                                        1 :
+                                            (isActive.currentPage === 1) ?
+                                                (pageNumber.page01-1)*itemsPerPage :
+                                                (isActive.currentPage === 2) ?
+                                                    (pageNumber.page02-1)*itemsPerPage :
+                                                    (pageNumber.page03-1)*itemsPerPage
+                                }
+                                {' – '}
+                                { 
+                                    (isActive.currentPage === 1 && pageNumber.page01 === 1) ?
+                                        itemsPerPage :
+                                            (isActive.currentPage === 1) ?
+                                                (pageNumber.page01)*itemsPerPage :
+                                                (isActive.currentPage === 2) ?
+                                                    (pageNumber.page02)*itemsPerPage :
+                                                    (isActive.currentPage === 3 ) && (pageNumber.page03 === itemsShowing.length) ?
+                                                        products_list.length :    
+                                                        pageNumber.page03*itemsPerPage   
+                                } of {products_list.length} results</span>
                         </>
                     }
                 </div>
@@ -63,7 +102,7 @@ export default function FilterBar(){
                             className="grid02"
                             placeholder="16"
                             value={itemsPerPage}
-                            onChange={(e) => setItemsPerPage(e.target.value)}
+                            onChange={(e) => setItemsPerPage(Number(e.target.value))}
                             min={8}
                             max={16}
                         />
@@ -75,51 +114,66 @@ export default function FilterBar(){
                 </div>
             </div>
 
-            <ProductItems itemsShowing={itemsShowing} />
+            <ProductItems itemsShowing={itemsShowing?.[(isActive.currentPage === 1 ? pageNumber.page01 : (isActive.currentPage === 2?  pageNumber.page02 : pageNumber.page03))-1]} />
 
             <div className="pagination-container">
                 <span 
-                    className={`previous ${isActive.page01 && 'hide'} ${isActive.prev && 'active'} `} 
+                    className={`previous ${isActive.prev && 'active'} ${ pageNumber.page01 === 1 && isActive.currentPage === 1 && 'inactive'}`} 
                     onClick={() => {
-                        if(isActive.page02)
-                            setIsActive({  next: false , page01 : true , page02 : false , page03 : false , prev: true })
-                        else if(isActive.page03)
-                            setIsActive({ next: false , page01 : false , page02 : true , page03 : false , prev: true })
+                        if(isActive.currentPage === 2)
+                            setIsActive({  next: false , currentPage: 1 , prev: true })
+                        else if(isActive.currentPage === 3)
+                            setIsActive({ next: false , currentPage: 2 , prev: true })
+                        else if ( isActive.currentPage === 1 )
+                            if( pageNumber.page01 > 1 )
+                                setPageNumber({  page01 : (pageNumber.page01 - 1) , page02 : (pageNumber.page02 - 1) , page03 : (pageNumber.page03 - 1)})
                     }}
                 >
                     Prev
                 </span>
                 <span 
-                    className={`page01 ${isActive.page01 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , page01 : true , page02 : false , page03 : false , prev: false })}
+                    className={`page01 ${isActive.currentPage === 1 && 'active'}`}
+                    onClick={() =>  setIsActive({  next: false , currentPage: 1 , prev: false })}
                 >
-                    1
+                    {pageNumber.page01}
                 </span>
                 <span 
-                    className={`page02 ${isActive.page02 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , page01 : false , page02 : true , page03 : false , prev: false })}
+                    className={`page02 ${isActive.currentPage === 2 && 'active'}`}
+                    onClick={() =>  setIsActive({  next: false , currentPage: 2 , prev: false })}
                 >
-                    2
+                    {pageNumber.page02}
                 </span>
                 <span
-                    className={`page03 ${isActive.page03 && 'active'}`}
-                    onClick={() =>  setIsActive({  next: false , page01 : false , page02 : false , page03 : true , prev: false })}
+                    className={`page03 ${isActive.currentPage === 3 && 'active'}`}
+                    onClick={() =>  setIsActive({  next: false , currentPage: 3 , prev: false })}
                 >
-                    3
+                    {pageNumber.page03}
                 </span>
                 <span 
-                    className={`next ${isActive.next && 'active'}`}
+                    className={`next ${isActive.next && 'active'} ${itemsShowing.length === pageNumber.page03 && isActive.currentPage === 3 && 'inactive'}`}
                     onClick={() => {
-                        if(isActive.page01)
-                            setIsActive({  next: true , page01 : false , page02 : true , page03 : false , prev: false })
-                        else if(isActive.page02)
-                            setIsActive({  next: true , page01 : false , page02 : false , page03 : true , prev: false })
-                        else if(isActive.page03)
-                            setIsActive({ next: true , page01 : true , page02 : false , page03 : false , prev: false })
+
+                        if(isActive.currentPage === 1)
+                            setIsActive({  next: true , currentPage: 2 , prev: false })
+                        else if(isActive.currentPage === 2)
+                            setIsActive({  next: true , currentPage: 3 , prev: false })
+                        else if(isActive.currentPage === 3){
+                            if( itemsShowing.length > 3 && itemsShowing.length !== pageNumber.page03 ){
+                                setPageNumber({  page01 : (pageNumber.page01 + 1) , page02 : (pageNumber.page02 + 1) , page03 : (pageNumber.page03 + 1)})
+                                setIsActive({ next: true , currentPage: 3 , prev: false })
+                            }else if( itemsShowing.length === pageNumber.page03 ){
+
+                            }
+
+                        }
                     }}
                 >
                     Next
                 </span>
+            </div>
+
+            <div className="slider-container">
+                
             </div>
         </div>
         
