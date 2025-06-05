@@ -1,15 +1,19 @@
 import React from "react";
 import './ProductBar.scss';
+import { useWindowSize } from "../../../context/ui-adjustment-context/UIAdjustmentContext";
 
 export default function ProductBar({productName}){
-    console.log('PRODUCT NAME  :' , productName)
+    const windowSize = useWindowSize();
+
     return (
         <div className="product_bar_container">
             <div className='flag'>
-                <pre>       Home <span>{'  >  '}</span> Shop <span>{'  > '}</span>{'  |   '}<span>{productName}</span></pre>
+                {
+                    windowSize.width <= 425  ?
+                        <pre>   Home <span>{'  >  '}</span> Shop <span>{'  > '}</span>{'  |   '}<span>{productName}</span></pre>
+                        : <pre>       Home <span>{'  >  '}</span> Shop <span>{'  > '}</span>{'  |   '}<span>{productName}</span></pre>
+                }    
             </div>
-                {/* {console.log(state)} */}
         </div>
-
     )
 }
