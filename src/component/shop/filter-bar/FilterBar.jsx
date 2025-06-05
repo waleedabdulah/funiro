@@ -5,12 +5,11 @@ import { CgMenuGridO } from "react-icons/cg";
 import { MdOutlineViewDay } from "react-icons/md";
 import ProductItems from "../../home/product-items/ProductItems";
 import { products_list , shopScreen_slider_content} from "../../../helpers/constants";
+import { useWindowSize } from "../../../context/ui-adjustment-context/UIAdjustmentContext";
 
 export default function FilterBar(){
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
+    const windowSize = useWindowSize();
+
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
     const [ itemsShowing , setItemsShowing ] = useState([])
     const [ pageNumber , setPageNumber ] = useState({
@@ -30,23 +29,6 @@ export default function FilterBar(){
         setItemsShowing([]);
         calculatingPages()
     }, [itemsPerPage, filters ])
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        }
-
-        window.addEventListener('resize', handleResize);
-        
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    function extractFilterOptions(){
-
-    }    
 
     function calculatingPages(){
         let nestedItems = []; 
@@ -238,23 +220,6 @@ export default function FilterBar(){
                 </span>
             </div>
 
-            <div className="slider-container">
-                <div 
-                    className="slider-track"
-                >
-                    {[...shopScreen_slider_content].map((slider_item, index) => (
-                        <div className="content" key={index}>
-                            <img src={slider_item.logo} alt="" />
-                            <div className="text">
-                                <span>{slider_item.title}</span>
-                                <span>{slider_item.description}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>    
-
         </div>
-        
     )
 } 

@@ -3,13 +3,21 @@ import { useState, useEffect , useRef } from 'react';
 import { CgShare } from "react-icons/cg";
 import { TbArrowsLeftRight } from "react-icons/tb";
 import { CiHeart } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({item_info}){
-    const {imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = item_info ;
+    const { product_id , imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = item_info ;
     let discountPrice = productPrice - (productPrice * discountPercentage / 100);
     
     const overlayRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate() ;
+
+    const handleClickOnCompare = () =>{
+        navigate(`/single-product/${product_id}` , {
+            state : {...item_info}
+        });
+    }
 
     useEffect(() => {
         const overlay = overlayRef.current; // Get the current overlay element
@@ -43,7 +51,7 @@ export default function ProductCard({item_info}){
                                 <CgShare />
                                 <p>Share</p>
                             </span>
-                            <span>
+                            <span onClick={handleClickOnCompare}>
                                 <TbArrowsLeftRight />
                                 <p>Compare</p>
                             </span>

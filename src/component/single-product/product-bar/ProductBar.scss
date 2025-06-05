@@ -1,0 +1,18 @@
+.product_bar_container{
+    background-color: #F9F1E7 ;
+    padding: 2rem 0rem ;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    
+    font-size:large;
+    
+    pre:nth-child(1) {
+        color: #9F9F9F;
+        span{
+            color:black ;
+        }
+    }
+
+}

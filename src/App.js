@@ -20,7 +20,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/cart-sidebar' element={<CartSidebar />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/single-product' element={<SingleProduct />} />
+        <Route path='/single-product/:product_id' element={<SingleProduct />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/product-comparison' element={<ProductComparison />} />
         <Route path='/checkout' element={<Checkout />} />

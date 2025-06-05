@@ -1,7 +1,6 @@
-import ProductItems from "../home/product-items/ProductItems"
 import Banner from "./banner/Banner"
 import FilterBar from "./filter-bar/FilterBar"
-import { products_list } from "../../helpers/constants"
+import Slider from "../slider/Slider"
 
 export default function Shop(){
     
@@ -9,9 +8,7 @@ export default function Shop(){
         <div>
            <Banner /> 
            <FilterBar />
-          
-
-           
+           <Slider />
         </div>
     )
 }
