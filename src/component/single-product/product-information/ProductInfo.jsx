@@ -4,6 +4,11 @@ import { GoStar } from "react-icons/go";
 import { FaFacebook } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { AiFillTwitterCircle } from "react-icons/ai";
+import Img01 from '../../../assets/single-product/main_img01.png'
+import OptionImag01 from '../../../assets/single-product/option01.png'
+import OptionImag02 from '../../../assets/single-product/option02.png'
+import OptionImag03 from '../../../assets/single-product/option03.png'
+import OptionImag04 from '../../../assets/single-product/option04.png'
 
 export default function ProductInfo({productInfo}){
     const { product_id , imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = productInfo ;
@@ -14,8 +19,27 @@ export default function ProductInfo({productInfo}){
     return (
         <div className="product_info_container">
             <div className="product-images">
-                <img src={imgSrc} />
+                <div className="options">
+                    <div>
+                        <img src={OptionImag01} />
+                    </div>
+                    <div>
+                        <img src={OptionImag02} />
+                    </div>
+                    <div>
+                        <img src={OptionImag03} />
+                    </div>
+                    <div>
+                        <img src={OptionImag04} />
+                    </div>
+                </div>
+                <div className="main-img">
+                    <div>
+                        <img src={Img01} />
+                    </div>
+                </div>    
             </div>
+
             <div className="info">
                 <span>{productName}</span>
                 <span>Rs. {discountPrice}.000</span>
@@ -60,7 +84,7 @@ export default function ProductInfo({productInfo}){
                     </div>    
                 </div>
                 
-                <hr style={{ height: '1px', backgroundColor: '#9F9F9F', border: 'none' }} />
+                <hr style={{ height: '1px', margin : '2.5rem 0rem 1rem 0rem' , backgroundColor: '#9F9F9F', border: 'none' }} />
 
                 <div className="category_and_tags_info">
                     <pre> SKU      :  SS001</pre>
