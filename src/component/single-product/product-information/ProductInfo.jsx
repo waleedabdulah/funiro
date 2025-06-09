@@ -9,6 +9,7 @@ import OptionImag01 from '../../../assets/single-product/option01.png'
 import OptionImag02 from '../../../assets/single-product/option02.png'
 import OptionImag03 from '../../../assets/single-product/option03.png'
 import OptionImag04 from '../../../assets/single-product/option04.png'
+import { PiStarFill , PiStar } from "react-icons/pi";
 
 export default function ProductInfo({productInfo}){
     const { product_id , imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = productInfo ;
@@ -16,6 +17,12 @@ export default function ProductInfo({productInfo}){
     
     const [ activeSize , setActiveSize ] = useState('L');
     const [ activeColor , setActiveColor ] = useState(1);
+    const [reviewCount, setReviewCount] = useState(3);
+
+    const handleClick = (count) => {
+        setReviewCount(count);
+    };
+    
     return (
         <div className="product_info_container">
             <div className="product-images">
@@ -44,7 +51,24 @@ export default function ProductInfo({productInfo}){
                 <span>{productName}</span>
                 <span>Rs. {discountPrice}.000</span>
                 <span  className="reviews">
-                    <span><GoStar /> <GoStar color="gold" /> <GoStar /> <GoStar /> <GoStar /></span>
+                    <span>
+                        {[...Array(5)].map((_, i) => {
+                            const index = i + 1;
+                            return index <= reviewCount ? (
+                                <PiStarFill
+                                    key={index}
+                                    onClick={() => handleClick(index)}
+                                    color="gold"
+                                />
+                            ) : (
+                                <PiStar
+                                    key={index}
+                                    onClick={() => handleClick(index)}
+                                    color="gold"
+                                />
+                            );
+                        })}
+                    </span>
                     <span> | 5 Customer Review</span>
                 </span>
                 <p>
