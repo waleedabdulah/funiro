@@ -1,5 +1,5 @@
 .shop-banner-container{
-    background-image: url('../../../assets/Shop/banner.png');
+    background-image: url('../../assets/Shop/banner.png');
     background-size: cover;           // makes the image cover the full div
     background-position: center;      // centers the image
     background-repeat: no-repeat;     // prevents tiling
@@ -16,8 +16,15 @@
         align-items: center;
         gap: 12px;
 
-        span:nth-child(1){
+        .title-text{
             font-size: 2rem;
+        }
+
+        .info{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px ;
         }
     }
 }

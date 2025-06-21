@@ -110,10 +110,8 @@
             .subscribe{
                 grid-row: 2/2;
                 display: grid;
-                grid-template-columns: 50% 20%;
+                grid-template-columns: auto auto;
                 grid-template-rows: repeat(5, 1fr);
-                grid-auto-rows: min-content;
-                grid-auto-columns: min-content;
                 gap: 10px;
                 
                 input{
@@ -122,16 +120,17 @@
                     border: none;
                     border-bottom: 1px solid black;
                     font-size: clamp(10px, 15px, 18px);
+                    width: min-content;
                 }
                 button{
                     border: none;
                     display: inline;
-                    // color: red;
                     border-bottom: 1px solid black;
                     grid-column: 1/2/1/2;
                     background: transparent;
                     font-size: clamp(12px, 14px, 18px);
-                
+                    width: fit-content;
+                    justify-self: center;
                 }
             }
        

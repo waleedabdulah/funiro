@@ -1,0 +1,47 @@
+.table{
+    border-collapse: collapse;
+    border-top: 1px solid #ddd; 
+    width: 100% ;
+    font-family: Arial, sans-serif; 
+    box-sizing: border-box;
+
+    thead{
+        tr{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            
+            th{
+                border-collapse: collapse;
+                border-left: 1px solid #ddd;
+                padding: 20px  40px; 
+                text-align: left;  
+                font-weight: bold; 
+                font-size: 25px;
+            }
+
+            th:nth-child(1){
+                border-left: none;
+            }
+        }
+    }
+    
+    tbody{
+        tr{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            td{
+                padding: 20px  40px;
+                font-size: 17px;
+                text-align: left ;
+                border-collapse: collapse;
+                border-left: 1px solid #ddd;
+            }
+
+            
+            td:nth-child(1){
+                border-left: none;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,83 @@
+.related-products-container{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    gap:2rem ;
+    padding: 2rem ;
+    
+
+    .view-more{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: start;
+        // align-items: center;
+        // text-align: center;
+
+        span:nth-child(1){
+            font-size: x-large;
+        }
+
+        button{
+            justify-self: center;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid black;
+            width: min-content;
+            white-space: nowrap;
+            color: #9F9F9F ; 
+            font-size: medium;
+        }
+    }
+
+    .cards{
+        box-sizing: border-box;
+        display: flex;
+        gap: 2rem;
+        flex-grow: 1;
+        flex-wrap: wrap;
+    }
+
+    .choose-product{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 10px ;
+        
+
+        label{
+            font-family:Arial, Helvetica, sans-serif;  
+            font-weight: 700; 
+        }
+
+        select{
+            font-family:Arial, Helvetica, sans-serif;  
+            width: 80%;
+            background-color: #B88E2F ;
+            color: white;
+            border: none ;
+            padding: 8px ;
+            border-radius: 5px;
+            font-size: x-small;
+
+             /* Remove default arrow */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            /* Custom arrow */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center; /* Controls margin/position */
+            background-size: 12px; /* Arrow size */
+            padding-right: 30px; /* Leave space for arrow */
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column ;
+    }
+}

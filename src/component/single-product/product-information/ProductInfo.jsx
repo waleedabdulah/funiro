@@ -10,6 +10,8 @@ import OptionImag02 from '../../../assets/single-product/option02.png'
 import OptionImag03 from '../../../assets/single-product/option03.png'
 import OptionImag04 from '../../../assets/single-product/option04.png'
 import { PiStarFill , PiStar } from "react-icons/pi";
+import { PiLineVerticalThin } from "react-icons/pi";
+import Reviews from "../../reviews/Reviews";
 
 export default function ProductInfo({productInfo}){
     const { product_id , imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = productInfo ;
@@ -17,11 +19,7 @@ export default function ProductInfo({productInfo}){
     
     const [ activeSize , setActiveSize ] = useState('L');
     const [ activeColor , setActiveColor ] = useState(1);
-    const [reviewCount, setReviewCount] = useState(3);
-
-    const handleClick = (count) => {
-        setReviewCount(count);
-    };
+    
     
     return (
         <div className="product_info_container">
@@ -50,27 +48,9 @@ export default function ProductInfo({productInfo}){
             <div className="info">
                 <span>{productName}</span>
                 <span>Rs. {discountPrice}.000</span>
-                <span  className="reviews">
-                    <span>
-                        {[...Array(5)].map((_, i) => {
-                            const index = i + 1;
-                            return index <= reviewCount ? (
-                                <PiStarFill
-                                    key={index}
-                                    onClick={() => handleClick(index)}
-                                    color="gold"
-                                />
-                            ) : (
-                                <PiStar
-                                    key={index}
-                                    onClick={() => handleClick(index)}
-                                    color="gold"
-                                />
-                            );
-                        })}
-                    </span>
-                    <span> | 5 Customer Review</span>
-                </span>
+                
+                <Reviews />
+                
                 <p>
                 Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
                 </p>

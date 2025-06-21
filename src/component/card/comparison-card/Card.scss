@@ -1,0 +1,28 @@
+.product-comparison-card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    
+    .img-section{
+        object-fit: fill;
+        background-color: #F9F1E7;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .text-section{
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+
+        span:nth-child(1){
+            font-size: large;
+        }
+
+        span:nth-child(2){
+            font-size: small;
+        }
+    }
+}

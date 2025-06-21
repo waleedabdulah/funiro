@@ -1,0 +1,16 @@
+.reviews {
+    display: flex;
+    align-items: center;
+    span {
+        font-size: x-small;
+        display: flex;
+        align-items: center;
+        color:  #9F9F9F ;   
+    }
+
+    .total-reviews{
+        margin-right: 8px;
+        font-size: 13px !important;
+        color:  black !important;  
+    }
+}

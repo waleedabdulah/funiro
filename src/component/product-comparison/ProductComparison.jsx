@@ -1,6 +1,28 @@
+import React from 'react';
+import Banner from '../banner/Banner';
+import RelatedProducts from './related-product/RelatedProducts';
+import { product_info_dummy } from '../../helpers/constants';
+import ProductComparisonTable from './product-comparison-table/ProductComparisonTable';
+import Slider from '../slider/Slider.jsx'
+
 export default function ProductComparison(){
 
+    console.log('product_info_dummy :' , Object.keys(product_info_dummy[0]))
     return (
-        <h1>Product Comparison</h1>
+        <section>
+            <Banner
+                hasToShowLogo={true} 
+                currentPage={'Comparison'}
+                title={'Product Comparison'}    
+            />
+            
+            <div style={{padding: '0rem 3rem 3rem 3rem'}}>
+                <RelatedProducts />
+
+                <ProductComparisonTable />
+            </div>
+
+            <Slider />            
+        </section>   
     )
 }
