@@ -1,0 +1,240 @@
+
+.cart_container{
+    display: grid;
+    grid-template-columns: auto auto ;
+    padding: 3rem;
+    width: 100%;
+    gap: 20px;
+    box-sizing: border-box;
+
+    .cart_item_list{
+        box-sizing: border-box;
+        grid-column: 1/2;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+
+        .header{
+            box-sizing: border-box;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 15% 20% 5%;
+            padding: 10px 0 ;
+            // gap: 20px ;
+            background-color: #F9F1E7 ;
+            font-size: large;
+            
+            span:nth-child(1){
+                grid-column: 1/2;   
+            }
+
+            span:nth-child(2){
+                grid-column: 2/3;
+            }
+
+            span:nth-child(3){
+                grid-column: 3/4;
+            }
+
+            span:nth-child(4){
+                grid-column: 4/5;
+            }
+
+
+            span:nth-child(5){
+                grid-column: 5/6;
+            }
+
+            span:nth-child(6){
+                grid-column: 6/7;
+            }
+        }
+
+        .no_of_items{
+            box-sizing: border-box;
+            padding: 10px 0 ;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            max-height: 500px;
+            overflow-y: auto; 
+            overflow-x: hidden;
+            
+            .item{
+                display: grid;
+                grid-template-columns: 20% 20% 20% 15% 20% 5%;
+                align-items: center;
+                
+                span:nth-child(1){
+                    grid-column: 1/2;
+                    width: 80%;
+                    background-color: #F9F1E7;
+                    box-sizing: border-box;
+                    display: flex; /* Add this to help with alignment */
+                    align-items: center; /* Center the image vertically */
+                    
+                    img{
+                        width: 90%; /* Make image take full width of container */
+                        height: auto; /* Set a fixed height or use max-height */
+                        object-fit: cover; /* Better than 'fill' - maintains aspect ratio */
+                        object-position: center; /* Center the image within the container */
+                    }
+                }
+
+                span:nth-child(2){
+                    grid-column: 2/3;
+                    font-size: 12px;
+                    color: #9F9F9F;
+                }
+    
+                span:nth-child(3){
+                    grid-column: 3/4;
+                    font-size: 12px;
+                    color: #9F9F9F;
+                }
+    
+                span:nth-child(4) input[type="number"]::-webkit-outer-spin-button,
+                span:nth-child(4) input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                
+                span:nth-child(4){
+                    // justify-self: center;
+                    input{
+                        width: 30px;
+                        text-align: center;
+                        padding: 5px 10px ;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                    }
+                }
+                
+    
+                span:nth-child(5){
+                    grid-column: 5/6;
+                    font-size: 12px;
+                }
+    
+    
+                span:nth-child(6){
+                    grid-column: 6/7;
+                }
+            }
+            
+        }
+
+
+    }
+
+    .checkout_card{
+        border-radius: 10px;
+        grid-column: 2/3;
+        background-color: #F9F1E7;
+        height: 250px ; 
+        box-sizing: border-box;
+        padding: 20px 0px ;
+        // justify-content: center;
+        align-items: center;
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        span:nth-child(1){
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+
+        .prices{
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            gap: 20px;
+
+            .subtotal{
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                span:nth-child(1){
+                    font-size: 13px;
+                    font-weight: 100;
+                }
+
+                span:nth-child(2){
+                    font-size: 12px;
+                    color: #9F9F9F;
+                }
+            }
+
+            .total{
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                span:nth-child(1){
+                    font-size: 13px;
+                    font-weight: 100;
+                }
+
+                span:nth-child(2){
+                    font-size: 15px;
+                    color:#B88E2F;
+                }
+            }
+        }
+
+        button{
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 10px 30px;
+            border: 1px solid black;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: grid;
+        grid-template-rows: auto auto ;
+        grid-template-columns: 100%;
+    
+        .cart_item_list{
+            grid-row: 1/2;
+            grid-column: 1/1;
+        } 
+        
+        .checkout_card{
+            width: 100%;
+            grid-row: 2/3;
+            grid-column: 1/1;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        padding: 1rem ;
+        .cart_item_list{
+            .header{
+                font-size: 10px;
+            } 
+            
+            .no_of_items{
+                .item{
+                    span:nth-child(2){
+                        font-size: 9px;
+                    }
+        
+                    span:nth-child(3){
+                        font-size: 9px;
+                    }
+                    
+                    span:nth-child(5){
+                        font-size: 9px;
+                    }
+                }
+            }
+        }  
+    }
+}
