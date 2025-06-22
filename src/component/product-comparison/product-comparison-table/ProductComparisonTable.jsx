@@ -2,9 +2,10 @@ import React from 'react'
 import { product_info_dummy } from '../../../helpers/constants'
 import './ProductComparisonTable.scss';
 import Button from '../../button/Button.jsx';
+import { useWindowSize } from '../../../context/ui-adjustment-context/UIAdjustmentContext.jsx';
 
 export default function ProductComparisonTable(){
-
+    const {windowSize} = useWindowSize()
     return (
         <div className="table">
             <table 
@@ -24,7 +25,7 @@ export default function ProductComparisonTable(){
                                         <th>{Object.keys(info)[0]}</th>
                                         <th></th>
                                         <th></th>
-                                        <th></th>
+                                        {windowSize > 768 ? <th></th> : null}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,7 +36,7 @@ export default function ProductComparisonTable(){
                                                         row.map(value => 
                                                             <td>{value}</td>
                                                     )}   
-                                                    <td></td>
+                                                    {windowSize > 768 ? <td></td> : null}
                                                 </tr>
                                         )}    
 
@@ -44,10 +45,16 @@ export default function ProductComparisonTable(){
                                             <>
                                                 <tr>
                                                     <td></td>
-                                                    <td><Button text='Add To Cart' /></td>
-                                                    <td><Button text='Add To Cart' /></td>
-                                                <td></td>
-                                            
+                                                    <td>
+                                                        <button>Add To Cart</button>
+                                                        {/* <Button text='Add To Cart' /> */}
+                                                    </td>
+                                                    <td>
+                                                        <button>Add To Cart</button>
+                                                        
+                                                        {/* <Button text='Add To Cart' /> */}
+                                                    </td>
+                                                    {windowSize > 768 ? <td></td> : null}
                                                 </tr>
                                             </>
                                             

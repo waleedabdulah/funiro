@@ -1,6 +1,14 @@
+import Banner from "../banner/Banner";
+
 export default function Cart(){
 
     return (
-        <h1>Cart</h1>
+        <section>
+            <Banner  
+                title='Cart' 
+                hasToShowLogo={true} 
+                currentPage='Cart' 
+            />
+        </section>
     )
 }

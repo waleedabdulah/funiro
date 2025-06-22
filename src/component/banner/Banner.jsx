@@ -15,7 +15,7 @@ export default function Banner({ title , hasToShowLogo = false ,currentPage}){
                     </div>
                 }
                 <span className='title-text'>{title}</span>
-                <span className='info'><b>Home</b> <IoIosArrowForward /> {currentPage} </span>
+                <span className='info'><b>Home</b> <IoIosArrowForward size={20}/> {currentPage} </span>
             </div>
         </div>
     )

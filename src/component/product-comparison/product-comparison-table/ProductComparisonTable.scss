@@ -4,6 +4,7 @@
     width: 100% ;
     font-family: Arial, sans-serif; 
     box-sizing: border-box;
+    table-layout: fixed; 
 
     thead{
         tr{
@@ -17,10 +18,19 @@
                 text-align: left;  
                 font-weight: bold; 
                 font-size: 25px;
+                word-wrap: break-word;
+                word-break: break-word;         // ✅ ensures long words wrap
+                white-space: pre-wrap;          // ✅ preserves line breaks
+                overflow-wrap: anywhere; 
+                min-width: 1px; 
             }
 
             th:nth-child(1){
                 border-left: none;
+            }
+
+            th:nth-child(3){
+                border-right: 1px solid #ddd ;
             }
         }
     }
@@ -35,13 +45,89 @@
                 text-align: left ;
                 border-collapse: collapse;
                 border-left: 1px solid #ddd;
+                word-wrap: break-word;
+                // overflow-wrap: break-word;
+                word-break: break-word;         // ✅ ensures long words wrap
+                white-space: pre-wrap;          // ✅ preserves line breaks
+                overflow-wrap: anywhere;  
+                min-width: 1px;
+                
+                button{
+                    background-color: #B88E2F;
+                    border: none;
+                    color: white;
+                    width:100%;
+                    padding: 10px 0 ;
+                }
             }
 
             
             td:nth-child(1){
                 border-left: none;
             }
+
+            td:nth-child(3){
+                border-right: 1px solid #ddd ;
+            }
         }
     }
     
+    @media screen and (max-width: 768px) {
+        thead{
+            tr{
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+                th{
+                    border-left: 1px solid #ddd;
+                    min-width: 1px;
+                    font-size: 15px;
+                    padding: 10px  30px;
+                }    
+                
+                th:nth-child(3){
+                    border-right: none ;
+                }
+
+            }    
+        }
+
+        tbody{
+            tr{
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+
+                td{
+                    border-left: 1px solid #ddd;
+                    min-width: 1px;
+                    font-size: 10px;
+                    padding: 10px  30px;
+                }
+
+                td:nth-child(3){
+                    border-right: none ;
+                }
+            }
+        }        
+    }
+
+
+    @media screen and (max-width: 500px) {
+        thead{
+            tr{
+                th{
+                    font-size: 10px;
+                    padding: 10px  20px;
+                }    
+            }    
+        }
+
+        tbody{
+            tr{
+                td{
+                    font-size: 7px;
+                    padding: 10px  20px;
+                }
+            }
+        }        
+    }
 }
