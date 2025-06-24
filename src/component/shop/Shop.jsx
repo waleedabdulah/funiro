@@ -1,6 +1,6 @@
 import Banner from "../banner/Banner"
-import FilterBar from "./filter-bar/FilterBar"
 import Slider from "../slider/Slider"
+import ProductItemsContainer from "./product-items-container/ProductItemsContainer"
 
 export default function Shop(){
     
@@ -11,7 +11,9 @@ export default function Shop(){
                 currentPage={'Shop'}
                 title={'Shop'}
             /> 
-            <FilterBar />
+            
+            <ProductItemsContainer />
+
             <Slider />
         </div>
     )

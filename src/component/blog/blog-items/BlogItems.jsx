@@ -164,34 +164,30 @@ export default function BlogItems(){
                             </div>
                             <div className='recent_post_item'>
                                 <div className='recent_post_img'>
+                                    <img src={RecentPostImg01} />
+                                </div>
+
+                                <div className='related_info'>
+                                    <span className='post_title'>Going all-in with millennial design</span>
+                                    <span className='date'>03 Aug 2022</span>
+                                </div>
+                            </div><div className='recent_post_item'>
+                                <div className='recent_post_img'>
+                                    <img src={RecentPostImg02} />
+                                </div>
+
+                                <div className='related_info'>
+                                    <span className='post_title'>Exploring new ways of decorating</span>
+                                    <span className='date'>03 Aug 2022</span>
+                                </div>
+                            </div>
+                            <div className='recent_post_item'>
+                                <div className='recent_post_img'>
                                     <img src={RecentPostImg03} />
                                 </div>
 
                                 <div className='related_info'>
                                     <span className='post_title'>Handmade pieces that took time to make</span>
-                                    <span className='date'>03 Aug 2022</span>
-                                </div>
-                            </div>
-
-                            
-                            <div className='recent_post_item'>
-                                <div className='recent_post_img'>
-                                    <img src={RecentPostImg04} />
-                                </div>
-
-                                <div className='related_info'>
-                                    <span className='post_title'>Modern home in Milan</span>
-                                    <span className='date'>03 Aug 2022</span>
-                                </div>
-                            </div>
-
-                            <div className='recent_post_item'>
-                                <div className='recent_post_img'>
-                                    <img src={RecentPostImg05} />
-                                </div>
-
-                                <div className='related_info'>
-                                    <span className='post_title'>Colorful office redesign</span>
                                     <span className='date'>03 Aug 2022</span>
                                 </div>
                             </div>
