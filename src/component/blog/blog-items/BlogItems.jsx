@@ -1,3 +1,4 @@
+import { useRef, useState , useEffect} from 'react';   
 import './BlogItems.scss';
 import { IoPersonSharp } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
@@ -10,9 +11,34 @@ import RecentPostImg02 from '../../../assets/blog/recent-posts/recentPostImg02.p
 import RecentPostImg03 from '../../../assets/blog/recent-posts/recentPostImg03.png';
 import RecentPostImg04 from '../../../assets/blog/recent-posts/recentPostImg04.png';
 import RecentPostImg05 from '../../../assets/blog/recent-posts/recentPostImg05.png';
-
+import { CiSearch } from "react-icons/ci";                 
 
 export default function BlogItems(){
+    const [isInputFocus , setIsInputFocus ] = useState(false);
+    const inputRef = useRef(null)
+
+    const handleSearchLogoClick = () =>{
+        inputRef.current.focus();
+        setIsInputFocus(true);
+    }
+
+    
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        console.log("Clicked outside!");
+        setIsInputFocus(false)
+        // You can blur, hide, close, etc.
+        inputRef.current.blur?.();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
     return(
         <div className="blog_container">
@@ -102,10 +128,48 @@ export default function BlogItems(){
             </div>
 
             <div className='categories_section'>
-                <input 
-                    type='text' 
-                    className='input' 
-                />
+                <div 
+                    ref={inputRef} 
+                    className="input-wrapper"  
+                    tabIndex={0} // make the div focusable 
+                    onClick={handleSearchLogoClick} 
+                >
+                    <input type="text"  />
+                    <div
+                        className={`${isInputFocus && 'search-icon'} flag`} 
+                    >
+                        {
+                            isInputFocus ?
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="8"
+                                height="8"
+                                fill="none"
+                                stroke="black"
+                                strokeWidth="0.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <circle cx="3.5" cy="3.5" r="2.2" />
+                                <line x1="7.5" y1="7.5" x2="5.3" y2="5.3" />
+                            </svg> :
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="black"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                        }
+                    </div>
+                </div>
+
 
                 <div className='categories_and_recent_posts'>
                     <div className='categories'>
