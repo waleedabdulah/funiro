@@ -1,10 +1,13 @@
 import { useState } from "react"
 import './PaginationBar.scss' ;
 
-export default function PaginationBar({isActive , pageNumber ,setPageNumber , itemsShowing , setIsActive}){
-
-    console.log('isActive , pageNumber ,setPageNumber , itemsShowing , setIsActive : ' , isActive , pageNumber ,setPageNumber , itemsShowing , setIsActive)
-
+export default function PaginationBar({
+    isActive ,
+    pageNumber ,
+    setPageNumber ,
+    itemsShowing ,
+    setIsActive
+}){
     return (
         <div className="pagination-container">
             <span 

@@ -12,33 +12,49 @@ import RecentPostImg03 from '../../../assets/blog/recent-posts/recentPostImg03.p
 import RecentPostImg04 from '../../../assets/blog/recent-posts/recentPostImg04.png';
 import RecentPostImg05 from '../../../assets/blog/recent-posts/recentPostImg05.png';
 import { CiSearch } from "react-icons/ci";                 
+import PaginationBar from '../../pagination-bar/PaginationBar';
 
 export default function BlogItems(){
     const [isInputFocus , setIsInputFocus ] = useState(false);
     const inputRef = useRef(null)
+    const [ itemsShowing , setItemsShowing ] = useState([])
+    const [ pageNumber , setPageNumber ] = useState({
+        page01 : 1 ,
+        page02 : 2 ,
+        page03 : 3
+    })
+    const [ isActive , setIsActive ] = useState({
+        next:  false ,
+        currentPage: 1 ,
+        prev: false 
+    })
+    
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (inputRef.current && !inputRef.current.contains(event.target)) {
+                setIsInputFocus(false)
+                inputRef.current.blur?.();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() =>{
+        setIsActive({
+            next:  false ,
+            currentPage: 1 ,
+            prev: false 
+        })
+    },[])
 
     const handleSearchLogoClick = () =>{
         inputRef.current.focus();
         setIsInputFocus(true);
     }
-
-    
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
-        console.log("Clicked outside!");
-        setIsInputFocus(false)
-        // You can blur, hide, close, etc.
-        inputRef.current.blur?.();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
 
     return(
         <div className="blog_container">
@@ -126,6 +142,14 @@ export default function BlogItems(){
                 </div>
 
             </div>
+
+            <PaginationBar
+                isActive={isActive}
+                pageNumber={pageNumber}
+                setPageNumber={setPageNumber}
+                setIsActive={setIsActive}
+                itemsShowing={itemsShowing}
+            />
 
             <div className='categories_section'>
                 <div 
