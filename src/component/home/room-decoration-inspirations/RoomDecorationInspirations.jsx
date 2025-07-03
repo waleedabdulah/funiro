@@ -7,29 +7,49 @@ import RoomInspirationImg01 from '../../../assets/home/RoomInspiration01.png'
 import RoomInspirationImg02 from '../../../assets/home/RoomInspriationImg02.png'                    
 import RoomInspirationImg03 from '../../../assets/home/RoomInspriationImg03.png'
 import { IoIosArrowForward } from "react-icons/io";
+import { useWindowSize } from '../../../context/ui-adjustment-context/UIAdjustmentContext';
 
 export default function RoomDecorationInspirations(){
     const images = [ RoomInspirationImg01 , RoomInspirationImg02, RoomInspirationImg03 , RoomInspirationImg01 ]
     const [ activeIndex , setActiveIndex ] = useState(0);
-    const sliderRef = useRef()
+    const  windowSize  = useWindowSize(); 
 
-    const itemsRef = useRef([]); // Array of refs
+    const itemsRef = useRef([]); 
     const currentIndex = useRef(0);
-
+    
     const handleScrollRight = () => {
         const items = itemsRef.current;
         if (!items || items.length === 0) return;
-      
+        console.log('okok', currentIndex.current)
+
+         // Initialize currentIndex if it's undefined/null
+        if (currentIndex.current === undefined || currentIndex.current === null) {
+            currentIndex.current = 0;
+        }
+
         if (currentIndex.current < items.length - 1) 
             currentIndex.current += 1;
         else 
           currentIndex.current = 0; // wrap to start
       
-        items[currentIndex.current].scrollIntoView({
-            behavior: 'smooth',
-            inline: 'center',
-            block: 'nearest',
-        });
+        if (items[currentIndex.current]) {
+            const container = items[currentIndex.current].closest('.images');
+            const currentItem = items[currentIndex.current];
+            
+            if (container && currentItem) {
+                const itemLeft = currentItem.offsetLeft;
+                const itemWidth = currentItem.offsetWidth;
+                const containerWidth = container.offsetWidth;
+                
+                const scrollLeft = itemLeft - (containerWidth / 2) + (itemWidth / 2);
+                
+                container.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
     };
 
 
@@ -39,7 +59,7 @@ export default function RoomDecorationInspirations(){
         else
             setActiveIndex(0)
     };
-      
+
     return (
         <div className='room-inspirations-container'>
             <div className='explore'>
@@ -50,8 +70,8 @@ export default function RoomDecorationInspirations(){
                 Our designer already made a lot of beautiful prototype of rooms that inspire you
                 </span>
                 <Button text='Explore More' />
-            </div>
-
+            </div> 
+        
             <div className='slider_container'>
                 <div 
                     className='active_image'
@@ -67,12 +87,14 @@ export default function RoomDecorationInspirations(){
                         className='next_btn' 
                         onClick={handleActiveImage}
                     >
-                        <IoIosArrowRoundForward size={35} color='white'/>
+                        <IoIosArrowRoundForward 
+                            size={ windowSize.width > 425 ? 35 : 30} 
+                            color='white'
+                        />
                     </button>
                 </div>
-
                 <div className='slider_images'>
-                    <div className='images' ref={sliderRef}>
+                    <div className='images'>
                         {
                             images.map((img, i) => {
                                 return (
@@ -92,18 +114,21 @@ export default function RoomDecorationInspirations(){
                                     )
                                 else
                                     return <span></span>    
-                            }
-                        )}
+                            })
+                        }
                     </div>
 
-                    <button 
-                        className='slider_btn' 
-                        onClick={handleScrollRight}
-                    >
-                        <IoIosArrowForward />
-                    </button>
+                    {
+                        windowSize.width > 425 ?
+                            <button 
+                                className='slider_btn' 
+                                onClick={handleScrollRight}
+                            >
+                                <IoIosArrowForward />
+                            </button> : ''
+                    }
                 </div>
-            </div>
+            </div>     
         </div>
     )
 };
