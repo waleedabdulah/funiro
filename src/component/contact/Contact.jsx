@@ -1,5 +1,19 @@
+import Banner from "../banner/Banner";
+import ContactInfo from "./contact-info/ContactInfo";
+import Slider from "../slider/Slider";
+
 export default function Contact(){
     return (
-        <h1>Contact</h1>
+        <section>
+            <Banner
+                hasToShowLogo={true}
+                currentPage={'Contact'}
+                title={'Contact'}
+            /> 
+
+            <ContactInfo />
+
+            <Slider />
+        </section>
     )
 }

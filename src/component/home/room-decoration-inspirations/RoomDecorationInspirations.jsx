@@ -20,9 +20,8 @@ export default function RoomDecorationInspirations(){
     const handleScrollRight = () => {
         const items = itemsRef.current;
         if (!items || items.length === 0) return;
-        console.log('okok', currentIndex.current)
-
-         // Initialize currentIndex if it's undefined/null
+        
+        // Initialize currentIndex if it's undefined/null
         if (currentIndex.current === undefined || currentIndex.current === null) {
             currentIndex.current = 0;
         }
@@ -49,7 +48,6 @@ export default function RoomDecorationInspirations(){
                 });
             }
         }
-
     };
 
 
