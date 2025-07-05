@@ -9,6 +9,7 @@ import Blog from "./component/blog/Blog";
 import Contact from "./component/contact/Contact";
 import Checkout from "./component/checkout/Checkout";
 import CartSidebar from "./component/cart-sidebar/CartSidebar";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/shop' element={<Shop />} />
         <Route path='/product-comparison' element={<ProductComparison />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
     
 
