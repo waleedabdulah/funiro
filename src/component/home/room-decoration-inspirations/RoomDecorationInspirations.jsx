@@ -8,12 +8,15 @@ import RoomInspirationImg02 from '../../../assets/home/RoomInspriationImg02.png'
 import RoomInspirationImg03 from '../../../assets/home/RoomInspriationImg03.png'
 import { IoIosArrowForward } from "react-icons/io";
 import { useWindowSize } from '../../../context/ui-adjustment-context/UIAdjustmentContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function RoomDecorationInspirations(){
     const images = [ RoomInspirationImg01 , RoomInspirationImg02, RoomInspirationImg03 , RoomInspirationImg01 ]
     const [ activeIndex , setActiveIndex ] = useState(0);
     const  windowSize  = useWindowSize(); 
-
+    
+    const navigate = useNavigate();
+   
     const itemsRef = useRef([]); 
     const currentIndex = useRef(0);
     
@@ -58,6 +61,10 @@ export default function RoomDecorationInspirations(){
             setActiveIndex(0)
     };
 
+    const handleClick = () =>{
+        navigate('/shop');
+    }
+    
     return (
         <div className='room-inspirations-container'>
             <div className='explore'>
@@ -67,7 +74,10 @@ export default function RoomDecorationInspirations(){
                 <span className='text02'>
                 Our designer already made a lot of beautiful prototype of rooms that inspire you
                 </span>
-                <Button text='Explore More' />
+                <Button 
+                    handleClick={handleClick}
+                    text='Explore More' 
+                />
             </div> 
         
             <div className='slider_container'>

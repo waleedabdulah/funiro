@@ -9,9 +9,11 @@ import { useState } from 'react';
 import { BsBagX } from "react-icons/bs";
 import item01 from '../../assets/home/ProductCard01.png'
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 export default function Header(){
     const [ hasCartModalOpen , setHasCartModalOpen ] = useState(false);
+    const navigate = useNavigate()
 
     return (
         <div className="header-container">
@@ -324,9 +326,30 @@ export default function Header(){
                     />
 
                     <div className='btns'>
-                        <button>Cart</button>
-                        <button>Checkout</button>
-                        <button>Comparison</button>
+                        <button 
+                            onClick={() => {
+                                navigate('/cart')
+                                setHasCartModalOpen(false)
+                            }}
+                        >
+                            Cart
+                        </button>
+                        <button 
+                            onClick={() => {
+                                navigate('/checkout')
+                                setHasCartModalOpen(false)
+                            }}
+                        >
+                            Checkout
+                        </button>
+                        <button 
+                            onClick={() => {
+                                    navigate('/product-comparison')
+                                    setHasCartModalOpen(false)
+                            }}
+                        >
+                            Comparison
+                        </button>
                     </div>
                             
                 </div>

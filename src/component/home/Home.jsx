@@ -6,6 +6,7 @@ import ProductItems from './product-items/ProductItems';
 import RoomDecorationInspirations from './room-decoration-inspirations/RoomDecorationInspirations';
 import DiverseFurnitureOptions  from './diverse-furniture-options/DiverseFurnitureOptions';
 import { products_list } from '../../helpers/constants';
+import Loader from '../fallback-loader/Loader';
 
 export default function Home(){
     
@@ -21,7 +22,8 @@ export default function Home(){
 
     return (
         <div className='home-container'>
-            <Banner />
+        
+            {/* <Banner />
             <CategoryItems />
             <ProductItems 
                 isShowMoreBtn={true}
@@ -29,7 +31,7 @@ export default function Home(){
                 onShowMore={appropriateProductListDivision}
             />
             <RoomDecorationInspirations />
-            <DiverseFurnitureOptions />
+            <DiverseFurnitureOptions /> */}
         </div> 
     )
 }

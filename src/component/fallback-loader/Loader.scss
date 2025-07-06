@@ -1,0 +1,29 @@
+.logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .logo_animator {
+    animation: stepZoom 3s steps(3, end) infinite;
+    transform-origin: center center; 
+  }
+    
+  @keyframes stepZoom {
+    0% {
+      transform: scale(1);
+    }
+    33.33% {
+      transform: scale(1.2);
+    }
+    66.66% {
+      transform: scale(1.4);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

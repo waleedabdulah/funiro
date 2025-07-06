@@ -12,6 +12,7 @@ import OptionImag04 from '../../../assets/single-product/option04.png'
 import { PiStarFill , PiStar } from "react-icons/pi";
 import { PiLineVerticalThin } from "react-icons/pi";
 import Reviews from "../../reviews/Reviews";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductInfo({productInfo}){
     const { product_id , imgSrc , productName, productType , productPrice , discountPercentage = 0, isNewProduct = false } = productInfo ;
@@ -19,7 +20,7 @@ export default function ProductInfo({productInfo}){
     
     const [ activeSize , setActiveSize ] = useState('L');
     const [ activeColor , setActiveColor ] = useState(1);
-    
+    const navigate = useNavigate();
     
     return (
         <div className="product_info_container">
@@ -79,11 +80,14 @@ export default function ProductInfo({productInfo}){
                     </div>
 
                     <div className="cart">
-                        <button>
+                        <button
+                            onClick={() => navigate('/cart')}
+                        >
                             Add To Cart
                         </button>
-                        <button>
-                            + Compare
+                        <button 
+                            onClick={() => navigate('/product-comparison')}
+                        >    + Compare
                         </button>
                     </div>    
                 </div>

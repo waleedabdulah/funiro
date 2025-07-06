@@ -3,9 +3,16 @@ import { product_info_dummy } from '../../../helpers/constants'
 import './ProductComparisonTable.scss';
 import Button from '../../button/Button.jsx';
 import { useWindowSize } from '../../../context/ui-adjustment-context/UIAdjustmentContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductComparisonTable(){
     const {windowSize} = useWindowSize()
+    const navigate = useNavigate();
+
+    const handleClick = () =>{
+        navigate('/cart')
+    }
+    
     return (
         <div className="table">
             <table 
@@ -46,11 +53,11 @@ export default function ProductComparisonTable(){
                                                 <tr>
                                                     <td></td>
                                                     <td>
-                                                        <button>Add To Cart</button>
+                                                        <button onClick={handleClick}>Add To Cart</button>
                                                         {/* <Button text='Add To Cart' /> */}
                                                     </td>
                                                     <td>
-                                                        <button>Add To Cart</button>
+                                                        <button onClick={handleClick}>Add To Cart</button>
                                                         
                                                         {/* <Button text='Add To Cart' /> */}
                                                     </td>

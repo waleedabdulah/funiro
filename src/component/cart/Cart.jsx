@@ -3,8 +3,10 @@ import './Cart.scss' ;
 import { AiFillDelete } from "react-icons/ai";
 import ProductImg from '../../assets/single-product/item04.png';
 import Slider from "../slider/Slider";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart(){
+    const navigate = useNavigate();
 
     return (
         <section>
@@ -145,7 +147,9 @@ export default function Cart(){
                             <span>Rs.  250,000.00</span>
                         </div>
                     </div>
-                    <button>
+                    <button
+                        onClick={() => navigate('/checkout')}
+                    >
                         Check Out
                     </button>
                 </div>
