@@ -22,8 +22,7 @@ export default function Home(){
 
     return (
         <div className='home-container'>
-        
-            {/* <Banner />
+            <Banner />
             <CategoryItems />
             <ProductItems 
                 isShowMoreBtn={true}
@@ -31,7 +30,7 @@ export default function Home(){
                 onShowMore={appropriateProductListDivision}
             />
             <RoomDecorationInspirations />
-            <DiverseFurnitureOptions /> */}
+            <DiverseFurnitureOptions />
         </div> 
     )
 }
