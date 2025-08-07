@@ -10,12 +10,16 @@ import Contact from "./component/contact/Contact";
 import Checkout from "./component/checkout/Checkout";
 import CartSidebar from "./component/cart-sidebar/CartSidebar";
 import { Navigate } from "react-router-dom";
+import Login from "./component/authentication-screens/login/Login";
+import SignUp from "./component/authentication-screens/sign-up/SignUp";
 
 function App() {
   return (
     <div className="App">
 
       <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />        
         <Route path='/' element={<Home />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/contact' element={<Contact />} />
