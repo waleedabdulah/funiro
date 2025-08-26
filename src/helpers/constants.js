@@ -359,7 +359,7 @@ export const image_list =[
         image_src : Table_17
     },
     {
-        image_id: 65,
+        image_id: 65 ,
         image_src : Table_18
     },
     {
