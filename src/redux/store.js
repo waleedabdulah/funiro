@@ -1,29 +1,23 @@
-// store.js
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage'; 
 import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { productItemsReducer } from './slices/productItemsSlice';
 
-// Example slice
-import userReducer from './userSlice';
 
-// Combine all reducers
 const rootReducer = combineReducers({
-  user: userReducer,
-  // add more slices here
+  productItems : productItemsReducer,
 });
 
-// Redux Persist config
 const persistConfig = {
-  key: 'root',          // key in localStorage
-  storage,              // storage type
-  whitelist: ['user'],  // only persist these reducers
+  key: 'root',          
+  storage,              
+  whitelist: [],  
   // blacklist: ['something'], // (alternative: exclude some reducers)
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Create store
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -35,5 +29,4 @@ export const store = configureStore({
     }),
 });
 
-// Create persistor
 export const persistor = persistStore(store);
