@@ -101,272 +101,73 @@ import Lamp_01 from '../assets/product_items/lamp/lamp_01.png'
  * 4 -> table  18
  * 5 -> lamp   01
  */
-export const image_list =[
-    {
-        image_id : 1 ,
-        image_src : Sofa_01
-    },
-    {
-        image_id : 2 ,
-        image_src : Sofa_02
-    },
-    {
-        image_id : 3 ,
-        image_src : Sofa_03
-    },
-    {
-        image_id : 4 ,
-        image_src : Sofa_04
-    },
-    {
-        image_id : 5 ,
-        image_src : Sofa_05
-    },
-    {
-        image_id : 6 ,
-        image_src : Sofa_06
-    },
-    {
-        image_id : 7 ,
-        image_src : Sofa_07
-    },
-    {
-        image_id : 8 ,
-        image_src : Sofa_08
-    },
-    {
-        image_id : 9 ,
-        image_src : Sofa_09
-    },
-    {
-        image_id : 10 ,
-        image_src : Sofa_10
-    },
-    {
-        image_id : 11 ,
-        image_src : Sofa_11
-    },
-    {
-        image_id : 12 ,
-        image_src : Sofa_12
-    },
-    {
-        image_id : 13 ,
-        image_src : Sofa_13
-    },
-    {
-        image_id : 14 ,
-        image_src : Sofa_14
-    },
-    {
-        image_id : 15 ,
-        image_src : Sofa_15
-    },
-    {
-        image_id : 16 ,
-        image_src : Sofa_16
-    },
-    {
-        image_id : 17 ,
-        image_src : Sofa_17
-    },
-    {
-        image_id : 18 ,
-        image_src : Sofa_18
-    },
-    {
-        image_id : 19 ,
-        image_src : Sofa_19
-    },
-    {
-        image_id : 20 ,
-        image_src : Sofa_20
-    },
-    {
-        image_id : 21 ,
-        image_src : Sofa_21
-    },
-    {
-        image_id : 22 ,
-        image_src : Sofa_22
-    },
-    {
-        image_id : 23 ,
-        image_src : Bed_01
-    },
-    {
-        image_id : 24 ,
-        image_src : Bed_02
-    },
-    {
-        image_id : 25 ,
-        image_src : Bed_03
-    },
-    {
-        image_id : 26 ,
-        image_src : Bed_04
-    },
-    {
-        image_id : 27 ,
-        image_src : Bed_05
-    },
-    {
-        image_id : 28 ,
-        image_src : Bed_06
-    },
-    {
-        image_id : 29 ,
-        image_src : Bed_07
-    },
-    {
-        image_id : 30 ,
-        image_src : Bed_08
-    },
-    {
-        image_id : 31 ,
-        image_src : Chair_01
-    },
-    {
-        image_id : 32 ,
-        image_src : Chair_02
-    },
-    {
-        image_id : 33 ,
-        image_src : Chair_03
-    },
-    {
-        image_id : 34 ,
-        image_src : Chair_04
-    },
-    {
-        image_id : 35 ,
-        image_src : Chair_05
-    },
-    {
-        image_id : 36 ,
-        image_src : Chair_06
-    },
-    {
-        image_id : 37 ,
-        image_src : Chair_07
-    },
-    {
-        image_id : 38 ,
-        image_src : Chair_08
-    },
-    {
-        image_id : 39 ,
-        image_src : Chair_09
-    },
-    {
-        image_id : 40 ,
-        image_src : Chair_10
-    },
-    {
-        image_id : 41 ,
-        image_src : Chair_11
-    },
-    {
-        image_id : 42 ,
-        image_src : Chair_12
-    },
-    {
-        image_id : 43 ,
-        image_src : Chair_13
-    },
-    {
-        image_id : 44 ,
-        image_src : Chair_14
-    },
-    {
-        image_id : 45 ,
-        image_src : Chair_15
-    },
-    {
-        image_id : 46 ,
-        image_src : Chair_16
-    },
-    {
-        image_id : 47 ,
-        image_src : Chair_17
-    },
-    {
-        image_id : 48 ,
-        image_src : Table_01
-    },
-    {
-        image_id : 49 ,
-        image_src : Table_02
-    },
-    {
-        image_id : 50 ,
-        image_src : Table_03
-    },
-    {
-        image_id : 51 ,
-        image_src : Table_04
-    },
-    {
-        image_id : 52 ,
-        image_src : Table_05
-    },
-    {
-        image_id : 53 ,
-        image_src : Table_06
-    },
-    {
-        image_id : 54 ,
-        image_src : Table_07
-    },
-    {
-        image_id : 55 ,
-        image_src : Table_08
-    },
-    {
-        image_id : 56 ,
-        image_src : Table_09
-    },
-    {
-        image_id : 57 ,
-        image_src : Table_10
-    },
-    {
-        image_id : 58 ,
-        image_src : Table_11
-    },
-    {
-        image_id : 59 ,
-        image_src : Table_12
-    },
-    {
-        image_id: 60 ,
-        image_src : Table_13
-    },
-    {
-        image_id: 61 ,
-        image_src : Table_14
-    },
-    {
-        image_id: 62 ,
-        image_src : Table_15
-    },
-    {
-        image_id: 63 ,
-        image_src : Table_16
-    },
-    {
-        image_id: 64 ,
-        image_src : Table_17
-    },
-    {
-        image_id: 65 ,
-        image_src : Table_18
-    },
-    {
-        image_id: 66 ,
-        image_src : Lamp_01
-    }
-]    
+export const image_list = new Map();
+image_list.set(1,  Sofa_01)
+image_list.set(2, Sofa_02);
+image_list.set(3, Sofa_03);
+image_list.set(4, Sofa_04);
+image_list.set(5, Sofa_05);
+image_list.set(6, Sofa_06);
+image_list.set(7, Sofa_07);
+image_list.set(8, Sofa_08);
+image_list.set(9, Sofa_09);
+image_list.set(10, Sofa_10);
+image_list.set(11, Sofa_11);
+image_list.set(12, Sofa_12);
+image_list.set(13, Sofa_13);
+image_list.set(14, Sofa_14);
+image_list.set(15, Sofa_15);
+image_list.set(16, Sofa_16);
+image_list.set(17, Sofa_17);
+image_list.set(18, Sofa_18);
+image_list.set(19, Sofa_19);
+image_list.set(20, Sofa_20);
+image_list.set(21, Sofa_21);
+image_list.set(22, Sofa_22);
+image_list.set(23, Bed_01);
+image_list.set(24, Bed_02);
+image_list.set(25, Bed_03);
+image_list.set(26, Bed_04);
+image_list.set(27, Bed_05);
+image_list.set(28, Bed_06);
+image_list.set(29, Bed_07);
+image_list.set(30, Bed_08);
+image_list.set(31, Chair_01);
+image_list.set(32, Chair_02);
+image_list.set(33, Chair_03);
+image_list.set(34, Chair_04);
+image_list.set(35, Chair_05);
+image_list.set(36, Chair_06);
+image_list.set(37, Chair_07);
+image_list.set(38, Chair_08);
+image_list.set(39, Chair_09);
+image_list.set(40, Chair_10);
+image_list.set(41, Chair_11);
+image_list.set(42, Chair_12);
+image_list.set(43, Chair_13);
+image_list.set(44, Chair_14);
+image_list.set(45, Chair_15);
+image_list.set(46, Chair_16);
+image_list.set(47, Chair_17);
+image_list.set(48, Table_01);
+image_list.set(49, Table_02);
+image_list.set(50, Table_03);
+image_list.set(51, Table_04);
+image_list.set(52, Table_05);
+image_list.set(53, Table_06);
+image_list.set(54, Table_07);
+image_list.set(55, Table_08);
+image_list.set(56, Table_09);
+image_list.set(57, Table_10);
+image_list.set(58, Table_11);
+image_list.set(59, Table_12);
+image_list.set(60, Table_13);
+image_list.set(61, Table_14);
+image_list.set(62, Table_15);
+image_list.set(63, Table_16);
+image_list.set(64, Table_17);
+image_list.set(65, Table_18);
+image_list.set(66, Lamp_01);
 
 export const shopScreen_slider_content = [
     {

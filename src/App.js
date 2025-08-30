@@ -30,7 +30,6 @@ function App() {
 
     gettingAllProductsInfo()
   },[])
-  
   return (
     <div className="App">
 
