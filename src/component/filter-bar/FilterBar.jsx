@@ -29,9 +29,9 @@ export default function FilterBar({
         let c = products_list.filter((item) => {
             if(filters.isDiscountedItems && filters.is_new_product && item.discounted_percentage > 0 && item.is_new_product){
                 return item
-            }else if(filters.isDiscountedItems && !filters.is_new_product && item.discounted_percentage > 0 ){
+            }else if(filters.isDiscountedItems && !filters.is_new_product && item.discounted_percentage > 0 && !item.is_new_product){
                 return item
-            }else if(!filters.isDiscountedItems && filters.is_new_product && item.is_new_product ){
+            }else if(!filters.isDiscountedItems && filters.is_new_product && item.discounted_percentage === 0 && item.is_new_product ){
                 return item
             } 
         })
