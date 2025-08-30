@@ -14,7 +14,7 @@ export default function FilterBar({
     products_list
 }){
     const [showFilterDropdown , setShowFilterDropdown ] = useState(false);
-    const [ filters , setFilters ] = useState({ isNewProduct : false , isDiscountedItems : false})
+    const [ filters , setFilters ] = useState({ is_new_product : false , isDiscountedItems : false})
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
                 
     const windowSize = useWindowSize();
@@ -22,21 +22,21 @@ export default function FilterBar({
     useEffect(() =>{
         setItemsShowing([]);
         calculatingPages()
-    }, [itemsPerPage, filters ])
+    }, [itemsPerPage, filters])
 
     function calculatingPages(){
         let nestedItems = []; 
         let c = products_list.filter((item) => {
-            if(filters.isDiscountedItems && filters.isNewProduct && item.discountPercentage > 0 && item.isNewProduct){
+            if(filters.isDiscountedItems && filters.is_new_product && item.discounted_percentage > 0 && item.is_new_product){
                 return item
-            }else if(filters.isDiscountedItems && !filters.isNewProduct && item.discountPercentage > 0 ){
+            }else if(filters.isDiscountedItems && !filters.is_new_product && item.discounted_percentage > 0 ){
                 return item
-            }else if(!filters.isDiscountedItems && filters.isNewProduct && item.isNewProduct ){
+            }else if(!filters.isDiscountedItems && filters.is_new_product && item.is_new_product ){
                 return item
             } 
         })
 
-        if(c.length === 0 && (!filters.isDiscountedItems && !filters.isNewProduct))
+        if(c.length === 0 && (!filters.isDiscountedItems && !filters.is_new_product))
             c =  products_list
         
         let b = c ;
@@ -79,19 +79,19 @@ export default function FilterBar({
                             <div
                                 onClick={() => setFilters({ ...filters , isDiscountedItems : !filters.isDiscountedItems})}
                                 style={{
-                                cursor: "pointer",
-                                backgroundColor: filters.isDiscountedItems ? "black" : "white",
-                                color: filters.isDiscountedItems ? "white" : "black",
+                                    cursor: "pointer",
+                                    backgroundColor: filters.isDiscountedItems ? "black" : "white",
+                                    color: filters.isDiscountedItems ? "white" : "black",
                                 }}
                             >
                                 Discounted Items
                             </div>
                             <div
-                                onClick={() => setFilters({ ...filters , isNewProduct : !filters.isNewProduct})}
+                                onClick={() => setFilters({ ...filters , is_new_product : !filters.is_new_product})}
                                 style={{
-                                cursor: "pointer",
-                                backgroundColor: filters.isNewProduct ? "black" : "white",
-                                color: filters.isNewProduct ? "white" : "black",
+                                    cursor: "pointer",
+                                    backgroundColor: filters.is_new_product ? "black" : "white",
+                                    color: filters.is_new_product ? "white" : "black",
                                 }}
                             >
                                 New Items
