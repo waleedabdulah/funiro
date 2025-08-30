@@ -1,10 +1,15 @@
-import React , {useEffect, useState}from "react";
+import React , {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
 import './ProductItemsContainer.scss';
 import ProductItems from "../../home/product-items/ProductItems";
 import PaginationBar from "../../pagination-bar/PaginationBar";
 import FilterBar from "../../filter-bar/FilterBar";
+import Loader from "../../fallback-loader/Loader";
 
 export default function ProductItemsContainer(){
+    let isLoading = useSelector((state) => state.productItems.isLoading)
+    let products_list = useSelector((state) => state.productItems.allProducts) || []
+    
     const [ itemsShowing , setItemsShowing ] = useState([])
     const [ pageNumber , setPageNumber ] = useState({
         page01 : 1 ,
@@ -25,6 +30,9 @@ export default function ProductItemsContainer(){
         })
     },[])
 
+    if(isLoading)
+        return <Loader />
+
     return (
         <div className='container'>
             <FilterBar 
@@ -33,6 +41,7 @@ export default function ProductItemsContainer(){
                 setItemsShowing={setItemsShowing}
                 pageNumber={pageNumber}
                 setPageNumber={setPageNumber}
+                products_list={products_list}
             />
 
             <ProductItems 

@@ -4,16 +4,15 @@ import { LuFilter } from "react-icons/lu";
 import { CgMenuGridO } from "react-icons/cg";
 import { MdOutlineViewDay } from "react-icons/md";
 import { useWindowSize } from '../../context/ui-adjustment-context/UIAdjustmentContext';
-import { products_list } from '../../helpers/constants';
 
 export default function FilterBar({
     isActive,
     pageNumber,
     itemsShowing,
     setItemsShowing,
-    setPageNumber
+    setPageNumber,
+    products_list
 }){
-
     const [showFilterDropdown , setShowFilterDropdown ] = useState(false);
     const [ filters , setFilters ] = useState({ isNewProduct : false , isDiscountedItems : false})
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
@@ -123,7 +122,7 @@ export default function FilterBar({
                                         ((pageNumber.page02)*itemsPerPage) :
                                         ((pageNumber.page02)*itemsPerPage)+itemsShowing[pageNumber.page03-1]?.length 
                                 
-                            } of {products_list.length} results
+                            } of {products_list?.length} results
                         </span>
                     </>
                 }

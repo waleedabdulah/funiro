@@ -13,15 +13,14 @@ import { Navigate } from "react-router-dom";
 import Login from "./component/authentication-screens/login/Login";
 import SignUp from "./component/authentication-screens/sign-up/SignUp";
 import { ApiCall } from "./service/base-service/ApiService";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { settingAllProductsInfo } from "./redux/slices/productItemsSlice";
 import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(()=> {
-    
+  useLayoutEffect(()=> {
     async function gettingAllProductsInfo(){
       const response = await ApiCall.getAllProducts()
                       .then(res =>  res.data)
@@ -30,6 +29,7 @@ function App() {
 
     gettingAllProductsInfo()
   },[])
+
   return (
     <div className="App">
 

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   allProducts : [],
+  isLoading: true
 };
 
 const productItemsSlice = createSlice({
@@ -10,6 +11,7 @@ const productItemsSlice = createSlice({
   reducers: {
     settingAllProductsInfo : (state, action) => {
       state.allProducts = [...action.payload];
+      state.isLoading = false;
     }
   },
 });

@@ -16,7 +16,7 @@ export default function ProductItems({isShowMoreBtn = false , itemsShowing , onS
 
             <div className='product-cards-container'>
                 {
-                    itemsShowing?.map((item, index) =>
+                    itemsShowing?.map((item) =>
                         <ProductCard key={item.product_id} item_info={item} />        
                     )
                 }
