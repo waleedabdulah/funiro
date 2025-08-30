@@ -1,4 +1,4 @@
-import React , {useState , useEffect} from 'react';
+import React , {useState , useEffect, useRef} from 'react';
 import './FilterBar.scss';
 import { LuFilter } from "react-icons/lu";
 import { CgMenuGridO } from "react-icons/cg";
@@ -16,13 +16,28 @@ export default function FilterBar({
     const [showFilterDropdown , setShowFilterDropdown ] = useState(false);
     const [ filters , setFilters ] = useState({ is_new_product : false , isDiscountedItems : false})
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
-                
+    const filterDropdownRef = useRef(null);
+    
     const windowSize = useWindowSize();
 
     useEffect(() =>{
         setItemsShowing([]);
         calculatingPages()
     }, [itemsPerPage, filters])
+
+    useEffect(() => {
+        function handleClick(event) {
+            if( event.target.classList.contains("grid02") ||
+                ( event.target.tagName.toLowerCase() === "svg"
+                && event.target.classList.contains("grid01") )) 
+                setShowFilterDropdown(prev => !prev);
+            else    
+                setShowFilterDropdown(false);
+        }
+
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
+    }, []);
 
     function calculatingPages(){
         let nestedItems = []; 
@@ -56,13 +71,12 @@ export default function FilterBar({
         <div className="filterBar-container">
             <div className="filter-view">
                 <>
-                    <LuFilter 
-                        onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                        className="grid01"
-                    />
+                    <LuFilter className="grid01" />
                     {
                         showFilterDropdown &&
                         <div
+                            ref={filterDropdownRef}
+                            // onClick={()}
                             style={{
                                 position: "absolute",
                                 left: windowSize.width > 500 ? "100px" : '20px',
@@ -99,7 +113,12 @@ export default function FilterBar({
                         </div>
                     }
                 </>
-                <span className="grid02">Filter</span>
+                <span 
+                    className="grid02"     
+                    // onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                >
+                    Filter
+                </span>
                 <CgMenuGridO className="grid03"/>
                 <MdOutlineViewDay className="grid04"/>
                 { 
