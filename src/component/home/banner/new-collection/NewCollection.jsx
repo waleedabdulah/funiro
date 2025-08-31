@@ -6,7 +6,9 @@ export default function NewCollection(){
     const navigate = useNavigate();
 
     const handleClick = () =>{
-        navigate('/shop');
+        navigate('/shop' , {
+            state: { from: 'homepage', showNewCollection: true }
+        });
     }
     return (
         <div className="new-collection-container">

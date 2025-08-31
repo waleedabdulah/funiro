@@ -4,6 +4,7 @@ import { LuFilter } from "react-icons/lu";
 import { CgMenuGridO } from "react-icons/cg";
 import { MdOutlineViewDay } from "react-icons/md";
 import { useWindowSize } from '../../context/ui-adjustment-context/UIAdjustmentContext';
+import { useLocation } from 'react-router-dom';
 
 export default function FilterBar({
     isActive,
@@ -17,8 +18,18 @@ export default function FilterBar({
     const [ filters , setFilters ] = useState({ is_new_product : false , isDiscountedItems : false})
     const [ itemsPerPage , setItemsPerPage ] = useState(16);
     const filterDropdownRef = useRef(null);
+    const location = useLocation();
+    
     
     const windowSize = useWindowSize();
+
+    useEffect(() => {
+        if(location?.state?.from === 'homepage' && location?.state?.showNewCollection)
+            setFilters({
+                is_new_product: true,
+                isDiscountedItems : true
+            })        
+    } , [location])
 
     useEffect(() =>{
         setItemsShowing([]);
@@ -27,7 +38,10 @@ export default function FilterBar({
 
     useEffect(() => {
         function handleClick(event) {
-            if( event.target.classList.contains("grid02") ||
+            if (filterDropdownRef.current && filterDropdownRef.current.contains(event.target)) {
+                // setShowFilterDropdown(true)    
+            }
+            else if( event.target.classList.contains("grid02") ||
                 ( event.target.tagName.toLowerCase() === "svg"
                 && event.target.classList.contains("grid01") )) 
                 setShowFilterDropdown(prev => !prev);
@@ -76,7 +90,6 @@ export default function FilterBar({
                         showFilterDropdown &&
                         <div
                             ref={filterDropdownRef}
-                            // onClick={()}
                             style={{
                                 position: "absolute",
                                 left: windowSize.width > 500 ? "100px" : '20px',
