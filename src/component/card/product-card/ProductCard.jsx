@@ -5,6 +5,7 @@ import { TbArrowsLeftRight } from "react-icons/tb";
 import { CiHeart } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import { image_list } from '../../../helpers/constants';
+import { discountedPrice } from '../../../helpers/utils';
 
 export default function ProductCard({item_info}){
     const { 
@@ -18,7 +19,7 @@ export default function ProductCard({item_info}){
     } = item_info ;
     
     let imgSrc = Product_images[0].is_cover_image && Product_images[0].product_image_id ;
-    let discountPrice = product_price - (product_price * discounted_percentage / 100);
+    let discountPrice = discountedPrice(product_price , discounted_percentage);
     
     const overlayRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);

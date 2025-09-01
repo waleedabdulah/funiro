@@ -6,8 +6,7 @@ import ProductComparisonTable from './product-comparison-table/ProductComparison
 import Slider from '../slider/Slider.jsx'
 
 export default function ProductComparison(){
-
-    console.log('product_info_dummy :' , Object.keys(product_info_dummy[0]))
+    
     return (
         <section>
             <Banner

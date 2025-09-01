@@ -4,12 +4,21 @@
     gap: 10px;
     flex: 1;
     
-    .img-section{
-        object-fit: fill;
+    .img-section {
         background-color: #F9F1E7;
         border-radius: 10px;
         display: flex;
         justify-content: center;
+        align-items: center; 
+        height: 250px; 
+        overflow: hidden; 
+    
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain; // keep aspect ratio
+          border-radius: 10px;
+        }
     }
 
     .text-section{
@@ -23,6 +32,12 @@
 
         span:nth-child(2){
             font-size: small;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .img-section{
+            height: 170px ;
         }
     }
 }
