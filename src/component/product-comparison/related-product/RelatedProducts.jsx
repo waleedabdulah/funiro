@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React , { useState , useEffect } from "react";
 import './RelatedProducts.scss';
 import Card from "../../card/comparison-card/Card";
 import { useWindowSize } from "../../../context/ui-adjustment-context/UIAdjustmentContext";
@@ -9,8 +9,25 @@ export default function RelatedProducts(){
     const windowSize = useWindowSize();
     const [selectedValue, setSelectedValue] = useState("default");
     const products_list = useSelector(state => state.productItems.allProducts)
+    const [selectedItemForComparison , setSelectedItemForComparison] = useState({
+        'first' : null,
+        'second' : null,
+        'third' : null
+    })   
     const navigate = useNavigate();
-    
+
+    useEffect(() => {
+        setSelectedItemForComparison(prev => {
+          if (windowSize.width < 769) {
+            return {
+              ...prev,
+              third: null,  
+            };
+          }
+          return prev; 
+        });
+    }, [windowSize.width]);
+      
     return (
         <section className="related-products-container">
             {
@@ -38,7 +55,13 @@ export default function RelatedProducts(){
                             return false
                         else
                             return true
-                    }).map((item) => <Card key={item.product_id} item={item} />)
+                    }).map((item) => 
+                            <Card 
+                                key={item.product_id} 
+                                item={item} 
+                                selectedItemForComparison={selectedItemForComparison}
+                                setSelectedItemForComparison={setSelectedItemForComparison}
+                            />)
                 }
             </div>
 
