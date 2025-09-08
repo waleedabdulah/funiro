@@ -46,11 +46,13 @@ export default function Card({
 
     return (
         <div 
-            style={{
-                border: isSelected &&  '2px solid black'
-            }}
+            // style={{
+            //     border: isSelected &&  '1px solid black'
+            // }}
             onClick={handleClick}
-            className='product-comparison-card-container'
+            className={`product-comparison-card-container ${isSelected ? 'selected-animated-gradient' : ''}`}
+            
+            // className='product-comparison-card-container'
         >
             <div className='img-section'>
                 <img 
