@@ -12,15 +12,12 @@ export default function Card({
   }){
     const { 
         product_name ,
-        product_price ,
-        discounted_percentage ,
-        Product_images
+        product_images,
+        final_price
     } = item ;
 
     const isSelected = Object.values(selectedItemForComparison).includes(product_name);
     
-    let discountPrice = discountedPrice(product_price, discounted_percentage);
-
     function handleClick() {
       const newSelection = { ...selectedItemForComparison };
       
@@ -37,9 +34,7 @@ export default function Card({
           newSelection.first = product_name;
         } else if (!newSelection.second) {
           newSelection.second = product_name;
-        } else if (!newSelection.third) {
-          newSelection.third = product_name;
-        }
+        } 
       }
       setSelectedItemForComparison(newSelection);
     }
@@ -57,8 +52,8 @@ export default function Card({
             <div className='img-section'>
                 <img 
                     src={ 
-                            Product_images[0].is_cover_image ?
-                                image_list.get(Product_images[0].product_image_id)
+                            product_images[0].is_cover_image ?
+                                image_list.get(product_images[0].image_id)
                                 :
                                    ProductImg
                     } 
@@ -67,7 +62,7 @@ export default function Card({
 
             <div className='text-section'>
                 <span>{product_name}</span>
-                <span>Rs. {discountPrice}.00</span>
+                <span>Rs. {final_price}.00</span>
                 <Reviews count={125} />
             </div>
         </div>

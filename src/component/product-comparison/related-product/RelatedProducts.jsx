@@ -1,21 +1,47 @@
-import React , { useState , useEffect } from "react";
+import React , { useState , useEffect, useRef } from "react";
 import './RelatedProducts.scss';
 import Card from "../../card/comparison-card/Card";
 import { useWindowSize } from "../../../context/ui-adjustment-context/UIAdjustmentContext";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useFilteredProductItems } from "../../../hooks/react-query/useFilteredProductItems";
 
 export default function RelatedProducts(){
     const windowSize = useWindowSize();
-    const [selectedValue, setSelectedValue] = useState("default");
-    const products_list = useSelector(state => state.productItems.allProducts)
+    const [selectedValue, setSelectedValue] = useState("low_to_high");
+    const { data , fetchNextPage, hasNextPage, isFetchingNextPage } = useFilteredProductItems( 10 , selectedValue);
+    
+    const allProducts = data?.pages.flatMap(page => page.products) || [];
+
+    const observerRef = useRef()
     const [selectedItemForComparison , setSelectedItemForComparison] = useState({
         'first' : null,
         'second' : null,
-        'third' : null
     })   
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (!observerRef.current) return;
+      
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if(entries[0].isIntersecting)
+                console.log('intersect' , hasNextPage , !isFetchingNextPage)
+            if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+              fetchNextPage();
+            }
+          },
+          { threshold: 0.1 }
+        );
+      
+        observer.observe(observerRef.current);
+      
+        return () => {
+          if (observerRef.current) observer.unobserve(observerRef.current);
+        };
+      }, [hasNextPage, isFetchingNextPage, fetchNextPage, data]);
+        
+      
     useEffect(() => {
         setSelectedItemForComparison(prev => {
           if (windowSize.width < 769) {
@@ -44,25 +70,29 @@ export default function RelatedProducts(){
             
             <div className='cards'>
                 {
-                    products_list.filter((item) => {
-                        if(selectedValue === 'discounted_items')
-                            return item.discounted_percentage > 0
-                        else if(selectedValue === 'new_items')
-                            return item.is_new_product
-                        else if( selectedValue === 'price_low_high')
-                            return false
-                        else if( selectedValue === 'price_high_low')
-                            return false
-                        else
-                            return true
-                    }).map((item) => 
-                            <Card 
-                                key={item.product_id} 
-                                item={item} 
-                                selectedItemForComparison={selectedItemForComparison}
-                                setSelectedItemForComparison={setSelectedItemForComparison}
-                            />)
+                    allProducts.map(function(item , index) { 
+                            return (
+                                <>
+                                    <Card 
+                                        key={item.product_id} 
+                                        item={item} 
+                                        selectedItemForComparison={selectedItemForComparison}
+                                        setSelectedItemForComparison={setSelectedItemForComparison}
+                                    />
+                                    {
+                                        index === allProducts.length - 1 && ( 
+                                        <div 
+                                            ref={observerRef} 
+                                            style={{ height: "40px", color: "transparent" }}
+                                        >
+                                            {isFetchingNextPage && <p>Loading more...</p>}
+                                        </div>
+                                    )}
+                                </>
+                            )
+                        })
                 }
+               
             </div>
 
             <div className="choose-product">
@@ -71,13 +101,12 @@ export default function RelatedProducts(){
                     id="product-filter" 
                     name="filter"
                     defaultValue={selectedValue}
-                    onClick={(e) => setSelectedValue(e.target.value) }
+                    onChange={(e) => setSelectedValue(e.target.value) }
                 >
-                    <option value="default">Choose a Product</option>
                     <option value="discounted_items">Discounted Items</option>
-                    <option value="new_items">New Items</option>
-                    <option value="price_low_high">Price: Low to High</option>
-                    <option value="price_high_low">Price: High to Low</option>
+                    <option value="new_products">New Items</option>
+                    <option value="low_to_high">Price: Low to High</option>
+                    <option value="high_to_low">Price: High to Low</option>
                 </select>
             </div>
         
