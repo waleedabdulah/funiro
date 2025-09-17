@@ -1,15 +1,16 @@
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
+import { HttpService } from "../../service/base-service/httpService";
+import { ApiCall } from "../../service/base-service/ApiService";
 
 const fetchProducts = async ({ pageParam = 1, limit, filter }) => {
-  const response = await axios.get("http://localhost:5000/api/filtered-products", {
-    params: { 
-      page: pageParam,
-      limit,         
-      filter,    
-    },
-  });
-  return response.data;
+  const response = await ApiCall.getFilteredProducts({ 
+                        page: pageParam,
+                        limit,         
+                        filter,    
+                    }) 
+
+    return response.data;
 };
 
 export const useFilteredProductItems = (limit, filter) => {

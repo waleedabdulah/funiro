@@ -1,12 +1,14 @@
-import React , { useState , useEffect, useRef } from "react";
+import React , { useState , useEffect, useRef , memo} from "react";
 import './RelatedProducts.scss';
 import Card from "../../card/comparison-card/Card";
 import { useWindowSize } from "../../../context/ui-adjustment-context/UIAdjustmentContext";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFilteredProductItems } from "../../../hooks/react-query/useFilteredProductItems";
 
-export default function RelatedProducts(){
+function RelatedProducts({
+    selectedItemForComparison,
+    setSelectedItemForComparison
+}){
     const windowSize = useWindowSize();
     const [selectedValue, setSelectedValue] = useState("low_to_high");
     const { data , fetchNextPage, hasNextPage, isFetchingNextPage } = useFilteredProductItems( 10 , selectedValue);
@@ -14,10 +16,7 @@ export default function RelatedProducts(){
     const allProducts = data?.pages.flatMap(page => page.products) || [];
 
     const observerRef = useRef()
-    const [selectedItemForComparison , setSelectedItemForComparison] = useState({
-        'first' : null,
-        'second' : null,
-    })   
+       
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,17 +41,17 @@ export default function RelatedProducts(){
       }, [hasNextPage, isFetchingNextPage, fetchNextPage, data]);
         
       
-    useEffect(() => {
-        setSelectedItemForComparison(prev => {
-          if (windowSize.width < 769) {
-            return {
-              ...prev,
-              third: null,  
-            };
-          }
-          return prev; 
-        });
-    }, [windowSize.width]);
+    // useEffect(() => {
+    //     setSelectedItemForComparison(prev => {
+    //       if (windowSize.width < 769) {
+    //         return {
+    //           ...prev,
+    //           third: null,  
+    //         };
+    //       }
+    //       return prev; 
+    //     });
+    // }, [windowSize.width]);
       
     return (
         <section className="related-products-container">
@@ -113,3 +112,5 @@ export default function RelatedProducts(){
         </section>
     )
 }
+
+export default memo(RelatedProducts);

@@ -2,7 +2,6 @@ import './Card.scss';
 import React from 'react';
 import ProductImg from '../../../assets/single-product/item04.png';
 import Reviews from '../../reviews/Reviews';
-import { discountedPrice } from '../../../helpers/utils';
 import { image_list } from '../../../helpers/constants';
 
 export default function Card({
@@ -13,27 +12,27 @@ export default function Card({
     const { 
         product_name ,
         product_images,
-        final_price
+        final_price,
+        product_id
     } = item ;
 
-    const isSelected = Object.values(selectedItemForComparison).includes(product_name);
+    const isSelected = Object.values(selectedItemForComparison).includes(product_id);
     
     function handleClick() {
       const newSelection = { ...selectedItemForComparison };
       
       if (isSelected) {
         for (const key in newSelection) {
-          if (newSelection[key] === product_name) {
+          if (newSelection[key] === product_id) {
             newSelection[key] = null;
             break;
           }
         }
       } else {
-        // If not selected, add it to the first available slot
         if (!newSelection.first) {
-          newSelection.first = product_name;
+          newSelection.first = product_id;
         } else if (!newSelection.second) {
-          newSelection.second = product_name;
+          newSelection.second = product_id;
         } 
       }
       setSelectedItemForComparison(newSelection);
@@ -41,13 +40,8 @@ export default function Card({
 
     return (
         <div 
-            // style={{
-            //     border: isSelected &&  '1px solid black'
-            // }}
             onClick={handleClick}
             className={`product-comparison-card-container ${isSelected ? 'selected-animated-gradient' : ''}`}
-            
-            // className='product-comparison-card-container'
         >
             <div className='img-section'>
                 <img 
