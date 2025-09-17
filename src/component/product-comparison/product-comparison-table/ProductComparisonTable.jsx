@@ -50,12 +50,8 @@ function ProductComparisonTable({ selectedItemForComparison }) {
             <thead>
               <tr>
                 <th>{section.title}</th>
-                <th>
-                    {/* {firstData?.product_name} */}
-                    </th>
-                <th>
-                    {/* {secondData?.product_name} */}
-                    </th>
+                <th></th>
+                <th></th>
                 {windowSize > 768 && <th></th>}
               </tr>
             </thead>
